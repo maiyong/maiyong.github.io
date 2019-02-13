@@ -5,15 +5,20 @@
   
 
   
-  <title>麦涌的博客</title>
+  <title>基础语法 | 麦涌的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="麦涌的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="函数定义函数带有两个int参数并返回int123fun sum(a: Int = 0, b: Int): Int &amp;#123;    return a + b&amp;#125; 简略写法1fun sum(a: Int, b: int) = a + b 当无返回值时，括号后面可以加上:Unit或者省略。 可变数量的参数(Varargs)123456789fun &amp;lt;T&amp;gt; asList(varar">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础语法">
+<meta property="og:url" content="http://yoursite.com/2019/02/13/kotlin/基础语法/index.html">
 <meta property="og:site_name" content="麦涌的博客">
+<meta property="og:description" content="函数定义函数带有两个int参数并返回int123fun sum(a: Int = 0, b: Int): Int &amp;#123;    return a + b&amp;#125; 简略写法1fun sum(a: Int, b: int) = a + b 当无返回值时，括号后面可以加上:Unit或者省略。 可变数量的参数(Varargs)123456789fun &amp;lt;T&amp;gt; asList(varar">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-13T10:57:24.153Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="麦涌的博客">
+<meta name="twitter:title" content="基础语法">
+<meta name="twitter:description" content="函数定义函数带有两个int参数并返回int123fun sum(a: Int = 0, b: Int): Int &amp;#123;    return a + b&amp;#125; 简略写法1fun sum(a: Int, b: int) = a + b 当无返回值时，括号后面可以加上:Unit或者省略。 可变数量的参数(Varargs)123456789fun &amp;lt;T&amp;gt; asList(varar">
   
     <link rel="alternate" href="/atom.xml" title="麦涌的博客" type="application/atom+xml">
   
@@ -60,9 +65,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-kotlin/基础语法" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-kotlin/基础语法" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/02/13/kotlin/基础语法/" class="article-date">
   <time datetime="2019-02-13T02:54:22.000Z" itemprop="datePublished">2019-02-13</time>
@@ -75,8 +78,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/13/kotlin/基础语法/">基础语法</a>
+    <h1 class="article-title" itemprop="name">
+      基础语法
     </h1>
   
 
@@ -119,86 +122,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-layout_optimize" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/22/layout_optimize/" class="article-date">
-  <time datetime="2019-01-22T02:54:22.000Z" itemprop="datePublished">2019-01-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/22/layout_optimize/">布局优化</a>
-    </h1>
+    <a href="/2019/01/22/layout_optimize/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">布局优化</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://developer.android.google.cn/training/improving-layouts/" target="_blank" rel="noopener">参考链接</a> </p>
-<h1 id="优化布局层次结构"><a href="#优化布局层次结构" class="headerlink" title="优化布局层次结构"></a>优化布局层次结构</h1><h4 id="使用LinearLayout时，避免使用layout-weight，因为每个child需要绘制两次，在listview等列表尤其突出"><a href="#使用LinearLayout时，避免使用layout-weight，因为每个child需要绘制两次，在listview等列表尤其突出" class="headerlink" title="使用LinearLayout时，避免使用layout_weight，因为每个child需要绘制两次，在listview等列表尤其突出"></a>使用LinearLayout时，避免使用layout_weight，因为每个child需要绘制两次，在listview等列表尤其突出</h4><h4 id="使用layout-inspector-工具查看view-tree"><a href="#使用layout-inspector-工具查看view-tree" class="headerlink" title="使用layout inspector 工具查看view tree"></a>使用layout inspector 工具查看view tree</h4><h4 id="使用Lint代码扫描工具"><a href="#使用Lint代码扫描工具" class="headerlink" title="使用Lint代码扫描工具"></a>使用Lint代码扫描工具</h4><h4 id="减少嵌套"><a href="#减少嵌套" class="headerlink" title="减少嵌套"></a>减少嵌套</h4><ul>
-<li>嵌套布局时推荐使用RelativeLayout，因为RelativeLayout相对与LinearLayout可以减少层级嵌套，虽然LinearLayout布局性能消耗比Relativelayout小，但是嵌套消耗的性能消耗比布局消耗的性能大，因此尽量减少嵌套，从而降低渲染深度。</li>
-<li>使用约束布局ConstaintLayout，最低支持api 9，可以直接拖动布局，最多两层嵌套。<br>分别使用RelativeLayout和LinearLayout实现，再通过Layout Inspector查看层级<br>布局：<br><img src="https://raw.githubusercontent.com/maiyong/img-repository/master/layout-optimize/layout-01.png" height="30%" width="30%"><br>RelativeLayout:<br><img src="https://raw.githubusercontent.com/maiyong/img-repository/master/layout-optimize/layout-02.png" height="30%" width="30%"><br>LinearLayout:<br><img src="https://raw.githubusercontent.com/maiyong/img-repository/master/layout-optimize/layout-03.png" height="30%" width="30%"><br>可以看的出，同样的显示效果，LinearLayout比RelativeLayout多了一个层级嵌套，也就是说LinearLayout需要多一个层级渲染，因此当有布局嵌套时建议优先使用RelativeLayout减少嵌套。</li>
-</ul>
-<h1 id="使用include与merge标签"><a href="#使用include与merge标签" class="headerlink" title="使用include与merge标签"></a>使用include与merge标签</h1><h4 id="使用include标签复用布局"><a href="#使用include标签复用布局" class="headerlink" title="使用include标签复用布局"></a>使用include标签复用布局</h4><ul>
-<li>使用merge标签配合include去除多余布局嵌套，减少层级嵌套，减少渲染时间。<br>使用了merge标签<br><img src="https://raw.githubusercontent.com/maiyong/img-repository/master/layout-optimize/layout-04.png" height="30%" width="30%"><br>未使用merge标签<br><img src="https://raw.githubusercontent.com/maiyong/img-repository/master/layout-optimize/layout-05.png" height="30%" width="30%"><br>由此可见，使用了merge标签后，减少了一层嵌套。</li>
-</ul>
-<h1 id="使用ViewStub标签，按需加载。"><a href="#使用ViewStub标签，按需加载。" class="headerlink" title="使用ViewStub标签，按需加载。"></a>使用ViewStub标签，按需加载。</h1><ul>
-<li>ViewStub标签是一个轻量级View，没有尺寸，不会绘制，因此使用ViewStub需要渲染的时间是很少的，使用android:layout来指定布局，如果需要加载该视图时，再去调用setVisibility(VISIBILITY)，一旦视图可见，ViewStub就被替换为layout。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/22/layout_optimize/" data-id="cjs2wfwnj0004eo7g08cgf76j" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/18/hello-world/" class="article-date">
-  <time datetime="2019-01-18T03:10:32.618Z" itemprop="datePublished">2019-01-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="麦涌的第一个博客"><a href="#麦涌的第一个博客" class="headerlink" title="麦涌的第一个博客"></a>麦涌的第一个博客</h1>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/18/hello-world/" data-id="cjs2wfwn80002eo7g5fyjcfo2" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
