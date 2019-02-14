@@ -11,7 +11,7 @@
 
     <title>
         
-        
+        Tags - undefined
         
     </title>
 
@@ -59,7 +59,7 @@
                     <span>HOME</span>
                 </a>
             </li>
-            <li>
+            <li class="active">
                 <a href="/tags">
                     <i class="iconfont icon-biaoqian1"></i>
                     <span>TAGS</span>
@@ -80,10 +80,6 @@
             
         </ul>
     </div>
-    
-        <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#麦涌的第一个博客"><span class="toc-text">麦涌的第一个博客</span></a></li></ol>
-</div>
     
 </div>
 
@@ -107,35 +103,59 @@
     
     <div class="index-middle">
         <!-- Main Content -->
-        
-
-
-<div class="post-container">
-    <div class="post-title">
-        
-    </div>
-
-    <div class="post-meta">
-        <span class="attr">Post：<span>2019-01-18 11:10:32</span></span>
-        
-        
-        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
-</span>
-
-    </div>
-    <div class="post-content ">
-        <h1 id="麦涌的第一个博客"><a href="#麦涌的第一个博客" class="headerlink" title="麦涌的第一个博客"></a>麦涌的第一个博客</h1>
-        
-        <br>
-        <div id="comment-container">
-        </div>
-        <div id="disqus_thread"></div>
-
-        <div id="lv-container">
-        </div>
-
-    </div>
+        <div id="tag_cloud" class="tags">
+    
+    <a href="#Android" title="Android" rel="1">Android</a>
+    
+    <a href="#kotlin" title="kotlin" rel="1">kotlin</a>
+    
 </div>
+
+<!-- 标签列表 -->
+
+
+<div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Android">
+                    <span class="tag-text">Android</span>
+                </span>
+    
+    <!-- <li class="listing-item">
+    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+    </li> -->
+    <div class="post-preview">
+        <a href="/2019/01/22/layout_optimize/">
+            <h2 class="post-title">
+                布局优化
+            </h2>
+            
+        </a>
+        <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+    </div>
+    
+</div>
+
+<div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="kotlin">
+                    <span class="tag-text">kotlin</span>
+                </span>
+    
+    <!-- <li class="listing-item">
+    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+    </li> -->
+    <div class="post-preview">
+        <a href="/2019/02/13/kotlin/基础语法/">
+            <h2 class="post-title">
+                基础语法
+            </h2>
+            
+        </a>
+        <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+    </div>
+    
+</div>
+
 
     </div>
 </div>
@@ -175,7 +195,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = ""
     window.hexo_root = "/"
-    window.isPost = true
+    window.isPost = false
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
