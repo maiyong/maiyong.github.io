@@ -82,7 +82,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#事件分发"><span class="toc-text">事件分发</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#事件分发"><span class="toc-text">事件分发</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#滑动冲突"><span class="toc-text">滑动冲突</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#滑动冲突解决方式"><span class="toc-text">滑动冲突解决方式</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -134,17 +134,27 @@
 <h1 id="事件分发"><a href="#事件分发" class="headerlink" title="事件分发"></a>事件分发</h1><p>其实就是对<code>MotionEvent</code>事件的分发过程，即当一个<code>MotionEvent</code>产生了以后，系统需要把这个事件传递给具体对的View。事件分发主要由三个方法共同完成：  <code>dispatchTouchEvent</code>、<code>onInterceptTouchEvent</code>和<code>onTouchEvent</code>。</p>
 <p>使用伪代码表达三者关系<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchTouchEvent</span><span class="params">(MotionEvent ev)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span> consume = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (onInterceptTouchEvent(ev)) &#123;    <span class="comment">//是否进行了拦截</span></span><br><span class="line">        consume = onTouchEvent(ev);     <span class="comment">//子View是否消费了</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        child.dispatchTouchEvent(ev);   <span class="comment">//不拦截，传递给子View</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> consume;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>当一个<code>View</code>处理事件时，如果它声明了<code>OnTouchListener</code>，则<code>onTouch</code>会被回调，如果<code>onTouch</code>返回<code>false</code>，则<code>View</code>的<code>onTouchEvent</code>会被调用，如果返回<code>true</code>，则不会。因此，<code>View</code>的<code>onTouchListener</code>优先级比<code>onTouchEvent</code>优先级高，<code>onClickListener</code>优先级最低。</p>
+<ol>
+<li>手指触摸屏幕到离开的过程中，先是<code>down</code>事件开始，之后无数个<code>move</code>事件，再之后是一个<code>up</code>事件结束。</li>
+<li>正常情况下，一个事件只能被一个<code>View</code>拦截且消耗。</li>
+<li>如果<code>View</code>处理一事件时，不消耗<code>ACTION_DOWN</code>事件时，那么同一事件序列中的其他事件都不会交给该<code>View</code>处理，而是把事件提交给父元素<code>onTouchEvent</code>处理。</li>
+<li>如果<code>View</code>不消耗除<code>ACTION_DOWN</code>事件外的其他事件，则这个事件序列会消失，父类的<code>onTouchEvent</code>也不会处理，最终会交给<code>Activity</code>处理。</li>
+<li><code>ViewGroup</code>默认不拦截事件。</li>
+<li><code>View</code>没有<code>onInterceptTouchEvent</code>方法，一旦有事件传过来，<code>onTouchEvent</code>就会被调用。</li>
+<li><code>View</code>的<code>onTouchEvent</code>默认都会消耗事件，除非<code>View</code>不可点击，即<code>clickable</code>和<code>longClickable</code>为<code>false</code>。</li>
+<li><code>View</code>的<code>enable</code>属性不影响<code>onTouchEvent</code>的默认返回值</li>
+<li><code>onClick</code>会发生的前提是收到了<code>down</code>和<code>up</code>事件。</li>
+<li>事件传递过程是从父元素分发到子<code>View</code>，通过<code>requestDisallowInterceptTouchEvent</code>方法可以在子元素中干预父元素的事件分发过程，但是<code>ACTION_DOWN</code>除外。</li>
+</ol>
+<h1 id="滑动冲突"><a href="#滑动冲突" class="headerlink" title="滑动冲突"></a>滑动冲突</h1><p>滑动冲突主要有三种场景</p>
 <ul>
-<li>手指触摸屏幕到离开的过程中，先是down事件开始，之后无数个move事件，再之后是一个up事件结束。</li>
-<li>正常情况下，一个事件只能被一个View拦截且消耗。</li>
-<li>如果View处理一事件时，不消耗ACTION_DOWN事件时，那么同一事件序列中的其他事件都不会交给该View处理，而是把事件提交给父元素onTouchEvent处理。</li>
-<li>如果View不消耗除ACTION_DOWN事件外的其他事件，则这个事件序列会消失，父类的onTouchEvent也不会处理，最终会交给Activity处理。</li>
-<li>ViewGroup默认不拦截事件。</li>
-<li>View没有onInterceptTouchEvent方法，一旦有事件传过来，onTouchEvent就会被调用。</li>
-<li>View的onTouchEvent默认都会消耗事件，除非View不可点击，即clickable和longClickable为false。</li>
-<li>View的enable属性不影响onTouchEvent的默认返回值</li>
-<li>onClick会发生的前提是收到了down和up事件。</li>
-<li>事件传递过程是从父元素分发到子View，通过requestDisallowInterceptTouchEvent方法可以在子元素中干预父元素的事件分发过程，但是ACTION_DOWN除外。</li>
+<li>外部滑动方向与内部滑动方向不一致。<br>可以根据坐标来判断是水平滑动还是竖直滑动，<code>dx &gt; dy</code> 时，即为水平，反之为竖直，根据判断对<code>View</code>进行拦截。</li>
+<li>外部滑动方向与内部滑动方向一致。<br>需要根据业务规则进行处理。</li>
+<li>上述两种情况的嵌套。<br>需要根据业务规则进行处理。</li>
+</ul>
+<h3 id="滑动冲突解决方式"><a href="#滑动冲突解决方式" class="headerlink" title="滑动冲突解决方式"></a>滑动冲突解决方式</h3><ul>
+<li>外部拦截法<br>先经过父容器拦截处理，如果父容器需要此事件，就进行拦截。首先需要重写<code>onInterceptTouchEvent</code>，在方法里进行拦截的逻辑处理。</li>
+<li>内部拦截法<br>父容器不进行拦截，所有的处理都交给子元素。需要<code>requestDisallowInterceptTouchEvent</code>方法才能进行正常工作，当子元素调用<code>parent.requestDisallowInterceptTouchEvent(false)</code>时，父元素才能进行事件拦截。</li>
 </ul>
 
         
