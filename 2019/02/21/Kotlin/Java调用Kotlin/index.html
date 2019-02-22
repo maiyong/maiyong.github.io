@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        Java调用Kotlin - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar.png">
+        </div>
+        <div class="name">
+            <i>麦涌</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java调用Kotlin"><span class="toc-text">Java调用Kotlin</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-getter与setter"><span class="toc-text">1. getter与setter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-包级函数"><span class="toc-text">2. 包级函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-实例字段"><span class="toc-text">3. 实例字段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-静态字段"><span class="toc-text">4. 静态字段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-静态方法"><span class="toc-text">5. 静态方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-可见性"><span class="toc-text">6. 可见性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7"><span class="toc-text">7.</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Java调用Kotlin
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-02-21 11:00:22</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#Kotlin" title="Kotlin">Kotlin</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content ">
+        <p><a href="http://www.kotlincn.net/docs/reference/" target="_blank" rel="noopener">参考链接</a></p>
+<h1 id="Java调用Kotlin"><a href="#Java调用Kotlin" class="headerlink" title="Java调用Kotlin"></a>Java调用Kotlin</h1><hr>
+<h4 id="1-getter与setter"><a href="#1-getter与setter" class="headerlink" title="1. getter与setter"></a>1. getter与setter</h4><p>getter与setter与Java调用Kotlin的映射关系相同。</p>
+<h4 id="2-包级函数"><a href="#2-包级函数" class="headerlink" title="2. 包级函数"></a>2. 包级函数</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//example.kt</span></span><br><span class="line"><span class="keyword">package</span> demo</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span> &#123; ... &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span> &#123; ... &#125; <span class="comment">//会被Java编译成静态方法，非大括号里的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//java文件中</span></span><br><span class="line">demo.ExampleKt.Foo.bar()</span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以使用注解</span></span><br><span class="line"><span class="meta">@file:JvmName</span>(<span class="string">"Example"</span>)</span><br><span class="line"><span class="keyword">package</span> demo</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span> &#123; ... &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span> &#123; ... &#125; <span class="comment">//会被Java编译成静态方法，非大括号里的</span></span><br><span class="line">demo.Example.bar()</span><br></pre></td></tr></table></figure>
+<h4 id="3-实例字段"><a href="#3-实例字段" class="headerlink" title="3. 实例字段"></a>3. 实例字段</h4><p>如果需要在Java中显示Kotlin的属性字段，就需要使用<code>@JvmField</code>注解对其标注。如果一个属性有幕后字段、非私有、没有<code>open/override</code>或者<code>const</code>修饰符并且不是被委托的属性，那就可以用<code>@JvmField</code>进行注解。</p>
+<h4 id="4-静态字段"><a href="#4-静态字段" class="headerlink" title="4. 静态字段"></a>4. 静态字段</h4><p>在命名对象或伴生对象中声明的<code>Korlin</code>属性会在该命名对象或包含伴生对象的类中具有静态幕后字断。这些字段通常是私有的，可以使用一下方式暴露出来。</p>
+<ul>
+<li><p><code>@JvmField</code>注解<br>使用<code>@JvmField</code>标注这样的属性使其成为与属性本身具有相同可见性的静态字段。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Key</span></span>(<span class="keyword">val</span> value: <span class="built_in">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="meta">@JvmField</span></span><br><span class="line">        <span class="keyword">val</span> COMPARATOR: Comparator&lt;Key&gt; = compareBy&lt;key&gt; &#123; it.value &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//java</span></span><br><span class="line">Key.COMPARATOR(key1, key2)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>lateinit</code>修饰符<br>在命名对象或伴生对象中的一个延迟初始化具有与属性setter相同可见行的静态幕后字断。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> Singleton &#123;</span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> provider: Provider</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//java</span></span><br><span class="line">Singleton.provider = new Provider();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>const</code>修饰符<br>用<code>const</code>标注的属性在Java中会成为静态字段，以下下几种情况在Java中都是静态字段。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> Obj &#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">val</span> CONST = <span class="number">1</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="keyword">val</span> VERSION = <span class="number">9</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">val</span> MAX = <span class="number">239</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="5-静态方法"><a href="#5-静态方法" class="headerlink" title="5. 静态方法"></a>5. 静态方法</h4><p>Kotlin可以为命名对象或伴生对象注解<code>@JvmStatic</code>则会在Java处生成静态方法。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> </span>&#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="meta">@JvmStatic</span> <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">bar</span><span class="params">()</span></span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Java</span></span><br><span class="line">C.foo() <span class="comment">//正常</span></span><br><span class="line">C.bar() <span class="comment">//错误，未加@JvmStatic</span></span><br><span class="line">C.Companion.foo() <span class="comment">//正常</span></span><br><span class="line">C.Companion.bar() <span class="comment">//正常</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="6-可见性"><a href="#6-可见性" class="headerlink" title="6. 可见性"></a>6. 可见性</h4><p> Kotlin的可见性以下列方式映射到Java：</p>
+<ul>
+<li><code>private</code>成员编译成<code>private</code>成员。<code>private</code>的顶层声明编译成包级局部声明。</li>
+<li><code>protected</code>保持<code>protected</code>。</li>
+<li><code>internal</code>在Java处会变成<code>public</code>，<code>internal</code>类的成员会通过名字修饰，使其更难以在Java中意外使用到。</li>
+<li><p><code>public</code>还是保持<code>public</code>.</p>
+<h4 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h4></li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
