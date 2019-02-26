@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="麦涌的博客">
+    <meta name="keyword" content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        委托 - 麦涌的博客
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar.png">
+        </div>
+        <div class="name">
+            <i>麦涌</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li>
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li>
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li>
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li>
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#委托"><span class="toc-text">委托</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、由委托实现"><span class="toc-text">1、由委托实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、委托属性"><span class="toc-text">2、委托属性</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input">
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        委托
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2019-02-25 17:00:22</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#Kotlin" title="Kotlin">Kotlin</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+
+    </div>
+    <div class="post-content ">
+        <p><a href="http://www.kotlincn.net/docs/reference/" target="_blank" rel="noopener">参考链接</a></p>
+<h1 id="委托"><a href="#委托" class="headerlink" title="委托"></a>委托</h1><h4 id="1、由委托实现"><a href="#1、由委托实现" class="headerlink" title="1、由委托实现"></a>1、由委托实现</h4><p>委托模式是实现继承的一个很好的替代方式，而<code>Kotlin</code>可以零样板代码地原生支持它。如下<code>Derived</code>类可以通过将其所有公有成员都委托给指定对象来实现一个接口<code>Base</code>，<code>by</code>表示<code>b</code>将在<code>Derived</code>中存储，并且将生成转发给<code>b</code>的所有<code>Base</code>方法。</p>
+<ul>
+<li>覆盖符合预期，编译器会使用<code>override</code>覆盖的实现而不是委托对象中的。</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BaseImpl</span></span>(<span class="keyword">val</span> x: <span class="built_in">Int</span>): Base &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">print</span><span class="params">()</span></span> &#123; print(x) &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span></span>(b: Base): Base <span class="keyword">by</span> b <span class="comment">//委托</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> b = Derived(<span class="number">10</span>)</span><br><span class="line">    b.print()  <span class="comment">//10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2、委托属性"><a href="#2、委托属性" class="headerlink" title="2、委托属性"></a>2、委托属性</h4><p>有一些常见的属性类型，虽然我们可以在每次需要的时候手动实现它们， 但是如果能够为大家把他们只实现一次并放入一个库会更好。</p>
+<ul>
+<li><p>延迟属性(lazy properties): 其值只在首次访问时计算；<br><code>lazy()</code>是接受一哥lambda并返回一个<code>Lazy&lt;T&gt;</code>实例的函数，返回的实例可以作为实现延迟属性的委托。第一次调用<code>get()</code>会执行lambda，后续调用<code>get</code>只返回结果。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> lazyValue: String <span class="keyword">by</span> lazy &#123;</span><br><span class="line">    print(<span class="string">"computed"</span>)</span><br><span class="line">    <span class="string">"Hello"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">print(lazyValue)</span><br><span class="line">print(lazyValue)</span><br><span class="line"><span class="comment">//打印=&gt; computedHelloHello</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可观察属性(observable properties): 监听器会收到有关此属性变更的通知；<br><code>Delegates.observable()</code>接收两个参数：初始值与修改值。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: String <span class="keyword">by</span> Delegates.observable(<span class="string">"&lt;no name&gt;"</span>) &#123;</span><br><span class="line">        prop, old, new -&gt; println(<span class="string">"<span class="variable">$old</span> -&gt; <span class="variable">$new</span>"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> user = User()</span><br><span class="line">user.name = <span class="string">"peter"</span></span><br><span class="line">user.name = <span class="string">"john"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//打印 &lt;no name&gt; -&gt; peter   peter -&gt; john</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把多个属性储存在一个映射(map)中，而不是每个存在单独的字段中；<br>一个常见的用例是在一个映射(map)里储存属性的值，经常出现在解析JSON或者做其他”动态”事情的应用中。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>(<span class="keyword">val</span> map: Map&lt;String, Any?&gt;) &#123;</span><br><span class="line">    <span class="keyword">val</span> name: String <span class="keyword">by</span> map</span><br><span class="line">    <span class="keyword">val</span> age: <span class="built_in">Int</span> <span class="keyword">by</span> map</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> user = User(mapOf(<span class="string">"name"</span> to <span class="string">"Peter"</span>, <span class="string">"age"</span> to <span class="number">25</span>))</span><br><span class="line"><span class="comment">//print Peter 25</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+        
+        <br>
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = ""
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

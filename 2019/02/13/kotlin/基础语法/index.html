@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="麦涌的博客">
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
         
-        基础语法 - undefined
+        基础语法 - 麦涌的博客
         
     </title>
 
@@ -82,7 +82,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#函数"><span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#定义函数"><span class="toc-text">定义函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可变数量的参数-Varargs"><span class="toc-text">可变数量的参数(Varargs)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#中缀表示法-infix"><span class="toc-text">中缀表示法(infix)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#函数作用域"><span class="toc-text">函数作用域</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内联函数"><span class="toc-text">内联函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#扩展函数"><span class="toc-text">扩展函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#高阶函数"><span class="toc-text">高阶函数</span></a></li></ol></li></ol><li class="toc-item toc-level-1"><a class="toc-link" href="#定义变量"><span class="toc-text">定义变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#getters-和-setters"><span class="toc-text">getters 和 setters</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#幕后字段，在类中不能直接声明字断，需要属性时，可以是用field代替"><span class="toc-text">幕后字段，在类中不能直接声明字断，需要属性时，可以是用field代替</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编译期常量-const"><span class="toc-text">编译期常量 const</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#延迟初始化属性与变量-lateinit"><span class="toc-text">延迟初始化属性与变量 lateinit</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#覆盖属性"><span class="toc-text">覆盖属性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用字符串模版"><span class="toc-text">使用字符串模版</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用可空值及null检测"><span class="toc-text">使用可空值及null检测</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据类创建DTOs-POJOs-POCOs-，类似javabean"><span class="toc-text">数据类创建DTOs(POJOs/POCOs)，类似javabean</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#类型判断"><span class="toc-text">类型判断</span></a></li>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基础语法"><span class="toc-text">基础语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义变量"><span class="toc-text">定义变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用可空值及null检测"><span class="toc-text">使用可空值及null检测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类创建DTOs-POJOs-POCOs-，类似javabean"><span class="toc-text">数据类创建DTOs(POJOs/POCOs)，类似javabean</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型判断"><span class="toc-text">类型判断</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -131,35 +131,43 @@
     </div>
     <div class="post-content ">
         <p><a href="http://www.kotlincn.net/docs/reference/" target="_blank" rel="noopener">参考链接</a></p>
-<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h4 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h4><p>带有两个<code>int</code>参数并返回<code>int</code><br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">sum</span><span class="params">(a: <span class="type">Int</span> = <span class="number">0</span>, b: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h1><hr>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>一、定义函数<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//带有两个`int`参数并返回`int`</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">sum</span><span class="params">(a: <span class="type">Int</span> = <span class="number">0</span>, b: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>简略写法<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">sum</span><span class="params">(a: <span class="type">Int</span>, b: <span class="type">int</span>)</span></span> = a + b</span><br></pre></td></tr></table></figure></p>
 <p>当无返回值时，括号后面可以加上:Unit或者省略。</p>
-<h4 id="可变数量的参数-Varargs"><a href="#可变数量的参数-Varargs" class="headerlink" title="可变数量的参数(Varargs)"></a>可变数量的参数(<code>Varargs</code>)</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">asList</span><span class="params">(<span class="keyword">vararg</span> ts: <span class="type">T</span>)</span></span>: List&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">val</span> result = ArrayList&lt;T&gt;()</span><br><span class="line">    <span class="keyword">for</span> (t <span class="keyword">in</span> ts) &#123;</span><br><span class="line">        result.add(t)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> list = asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)    <span class="comment">//list =&gt; [1,2,3]</span></span><br></pre></td></tr></table></figure>
-<h4 id="中缀表示法-infix"><a href="#中缀表示法-infix" class="headerlink" title="中缀表示法(infix)"></a>中缀表示法(<code>infix</code>)</h4><ul>
+<p>二、可变数量的参数(<code>Varargs</code>)<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">asList</span><span class="params">(<span class="keyword">vararg</span> ts: <span class="type">T</span>)</span></span>: List&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">val</span> result = ArrayList&lt;T&gt;()</span><br><span class="line">    <span class="keyword">for</span> (t <span class="keyword">in</span> ts) &#123;</span><br><span class="line">        result.add(t)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> list = asList(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)    <span class="comment">//list =&gt; [1,2,3]</span></span><br></pre></td></tr></table></figure></p>
+<p>三、中缀表示法(<code>infix</code>)</p>
+<ul>
 <li>必须是成员函数或扩展函数</li>
 <li>必须只有一个参数</li>
 <li>参数不可以是可变参数且不可以有默认值</li>
 </ul>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">infix</span> <span class="function"><span class="keyword">fun</span> <span class="built_in">Int</span>.<span class="title">shl</span><span class="params">(x: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123; ... &#125;</span><br><span class="line"><span class="number">1</span> shl <span class="number">2</span> <span class="comment">//中缀表示法</span></span><br><span class="line"><span class="number">1</span>.shl(<span class="number">2</span>) <span class="comment">//等同于这样</span></span><br></pre></td></tr></table></figure>
-<h4 id="函数作用域"><a href="#函数作用域" class="headerlink" title="函数作用域"></a>函数作用域</h4><ul>
+<p>四、函数作用域</p>
+<ul>
 <li>支持局部函数，即函数里有函数，可以实现闭包，尾递归</li>
 <li>成员函数，在类中定义的函数</li>
 </ul>
-<h4 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h4><p>待补充</p>
-<h4 id="扩展函数"><a href="#扩展函数" class="headerlink" title="扩展函数"></a>扩展函数</h4><p>待补充</p>
-<h4 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h4><p>待补充</p>
-<h1 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h1><p><code>val</code> 只能赋值一次，而<code>var</code>可以赋值多次</p>
-<h4 id="getters-和-setters"><a href="#getters-和-setters" class="headerlink" title="getters 和 setters"></a><code>getters</code> 和 <code>setters</code></h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> &lt;name&gt;[:&lt;PropertyType&gt;] [=&lt;initValue&gt;]</span><br><span class="line">    [&lt;getter&gt;]</span><br><span class="line">    [&lt;setter&gt;]</span><br></pre></td></tr></table></figure>
-<h4 id="幕后字段，在类中不能直接声明字断，需要属性时，可以是用field代替"><a href="#幕后字段，在类中不能直接声明字断，需要属性时，可以是用field代替" class="headerlink" title="幕后字段，在类中不能直接声明字断，需要属性时，可以是用field代替"></a>幕后字段，在类中不能直接声明字断，需要属性时，可以是用<code>field</code>代替</h4><h4 id="编译期常量-const"><a href="#编译期常量-const" class="headerlink" title="编译期常量 const"></a>编译期常量 <code>const</code></h4><ul>
+<p>五、内联函数，待补充</p>
+<p>六、扩展函数，待补充</p>
+<p>七、高阶函数，待补充</p>
+<hr>
+<h2 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h2><p><code>val</code> 只能赋值一次，而<code>var</code>可以赋值多次</p>
+<p>一、getters<code>和</code>setters`<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> &lt;name&gt;[:&lt;PropertyType&gt;] [=&lt;initValue&gt;]</span><br><span class="line">    [&lt;getter&gt;]</span><br><span class="line">    [&lt;setter&gt;]</span><br></pre></td></tr></table></figure></p>
+<p>二、幕后字段，在类中不能直接声明字断，需要属性时，可以是用<code>field</code>代替</p>
+<p>三、编译期常量 <code>const</code></p>
+<ul>
 <li>位于顶层或者是<code>object</code>声明或<code>companion object</code>的一个成员</li>
 <li>以<code>string</code>或原生类型值进行初始化</li>
 <li>没有自定义<code>getter</code> </li>
 </ul>
-<h4 id="延迟初始化属性与变量-lateinit"><a href="#延迟初始化属性与变量-lateinit" class="headerlink" title="延迟初始化属性与变量 lateinit"></a>延迟初始化属性与变量 <code>lateinit</code></h4><p>该修饰符只能用于类中的属性，可以使用<code>.isInitialized</code>判断是否有进行初始化</p>
-<h4 id="覆盖属性"><a href="#覆盖属性" class="headerlink" title="覆盖属性"></a>覆盖属性</h4><p>类似于继承方法，需要在声明符号前加<code>override</code></p>
-<h1 id="使用字符串模版"><a href="#使用字符串模版" class="headerlink" title="使用字符串模版"></a>使用字符串模版</h1><p>可以使用<code>$</code>符号占位变量，或者<code>${}</code>占位一个表达式<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> a1 = <span class="string">"a is <span class="variable">$a</span>"</span>  <span class="comment">//a is 1</span></span><br><span class="line"><span class="keyword">var</span> a2 = <span class="string">"<span class="subst">$&#123;a1.replace("is", "was")&#125;</span>, but now is 2"</span> <span class="comment">//a was 1, but now is 2</span></span><br></pre></td></tr></table></figure></p>
-<h1 id="使用可空值及null检测"><a href="#使用可空值及null检测" class="headerlink" title="使用可空值及null检测"></a>使用可空值及<code>null</code>检测</h1><p>当某个变量的值可以为<code>null</code>的时候，必须在声明处的类型后加<code>?</code>来标识</p>
-<h1 id="数据类创建DTOs-POJOs-POCOs-，类似javabean"><a href="#数据类创建DTOs-POJOs-POCOs-，类似javabean" class="headerlink" title="数据类创建DTOs(POJOs/POCOs)，类似javabean"></a>数据类创建DTOs(POJOs/POCOs)，类似javabean</h1><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span></span>(<span class="keyword">val</span> name: String, <span class="keyword">val</span> age: <span class="built_in">Int</span>)</span><br></pre></td></tr></table></figure>
+<p>四、延迟初始化属性与变量 <code>lateinit</code>，该修饰符只能用于类中的属性，可以使用<code>.isInitialized</code>判断是否有进行初始化</p>
+<p>五、覆盖属性，类似于继承方法，需要在声明符号前加<code>override</code></p>
+<p>六、使用字符串模版，可以使用<code>$</code>符号占位变量，或者<code>${}</code>占位一个表达式<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> a1 = <span class="string">"a is <span class="variable">$a</span>"</span>  <span class="comment">//a is 1</span></span><br><span class="line"><span class="keyword">var</span> a2 = <span class="string">"<span class="subst">$&#123;a1.replace("is", "was")&#125;</span>, but now is 2"</span> <span class="comment">//a was 1, but now is 2</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="使用可空值及null检测"><a href="#使用可空值及null检测" class="headerlink" title="使用可空值及null检测"></a>使用可空值及<code>null</code>检测</h2><p>当某个变量的值可以为<code>null</code>的时候，必须在声明处的类型后加<code>?</code>来标识</p>
+<hr>
+<h2 id="数据类创建DTOs-POJOs-POCOs-，类似javabean"><a href="#数据类创建DTOs-POJOs-POCOs-，类似javabean" class="headerlink" title="数据类创建DTOs(POJOs/POCOs)，类似javabean"></a>数据类创建DTOs(POJOs/POCOs)，类似javabean</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span></span>(<span class="keyword">val</span> name: String, <span class="keyword">val</span> age: <span class="built_in">Int</span>)</span><br></pre></td></tr></table></figure>
 <p>提供了以下的功能</p>
 <ul>
 <li>所有的属性的<code>getter</code>，<code>var</code>的还提供了<code>setter</code></li>
@@ -168,9 +176,9 @@
 <li>主构造函数至少有一个参数</li>
 <li>参数都需要加上<code>var</code>或者<code>val</code></li>
 <li>不能抽象、开放、密封或者内部的</li>
-<li></li>
 </ul>
-<h1 id="类型判断"><a href="#类型判断" class="headerlink" title="类型判断"></a>类型判断</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">when(x) &#123;</span><br><span class="line">    is Foo -&gt;   //todo</span><br><span class="line">    is Stu -&gt;   //todo</span><br><span class="line">    else   -&gt;   //todo</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="类型判断"><a href="#类型判断" class="headerlink" title="类型判断"></a>类型判断</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">when</span>(x) &#123;</span><br><span class="line">    <span class="keyword">is</span> Foo -&gt;   <span class="comment">//todo</span></span><br><span class="line">    <span class="keyword">is</span> Stu -&gt;   <span class="comment">//todo</span></span><br><span class="line">    <span class="keyword">else</span>   -&gt;   <span class="comment">//todo</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
         <br>
         <div id="comment-container">

@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="麦涌的博客">
     <meta name="keyword" content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
     <title>
         
-        Java调用Kotlin - undefined
+        Java调用Kotlin - 麦涌的博客
         
     </title>
 
@@ -82,7 +82,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java调用Kotlin"><span class="toc-text">Java调用Kotlin</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-getter与setter"><span class="toc-text">1. getter与setter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-包级函数"><span class="toc-text">2. 包级函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-实例字段"><span class="toc-text">3. 实例字段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-静态字段"><span class="toc-text">4. 静态字段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-静态方法"><span class="toc-text">5. 静态方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-可见性"><span class="toc-text">6. 可见性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7"><span class="toc-text">7.</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java调用Kotlin"><span class="toc-text">Java调用Kotlin</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-getter与setter"><span class="toc-text">1. getter与setter</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-包级函数"><span class="toc-text">2. 包级函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-实例字段"><span class="toc-text">3. 实例字段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-静态字段"><span class="toc-text">4. 静态字段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-静态方法"><span class="toc-text">5. 静态方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-可见性"><span class="toc-text">6. 可见性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-Class-转-KClass"><span class="toc-text">7. Class 转 KClass</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8、生成重载"><span class="toc-text">8、生成重载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9、异常捕获"><span class="toc-text">9、异常捕获</span></a></li></ol></li></ol>
 </div>
     
 </div>
@@ -153,9 +153,11 @@
 <li><code>private</code>成员编译成<code>private</code>成员。<code>private</code>的顶层声明编译成包级局部声明。</li>
 <li><code>protected</code>保持<code>protected</code>。</li>
 <li><code>internal</code>在Java处会变成<code>public</code>，<code>internal</code>类的成员会通过名字修饰，使其更难以在Java中意外使用到。</li>
-<li><p><code>public</code>还是保持<code>public</code>.</p>
-<h4 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h4></li>
+<li><code>public</code>还是保持<code>public</code>。</li>
 </ul>
+<h4 id="7-Class-转-KClass"><a href="#7-Class-转-KClass" class="headerlink" title="7. Class 转 KClass"></a>7. Class 转 KClass</h4> <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取KClass</span></span><br><span class="line">kotlin.jvm.JvmClassMappingKt.getKotlinClass(MainView.<span class="keyword">class</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="8、生成重载"><a href="#8、生成重载" class="headerlink" title="8、生成重载"></a>8、生成重载</h4><p> 如果<code>Kotlin</code>中的函数(包括构造函数)的参数都使用了默认值，在<code>Java</code>中默认只会生成一个映射函数。如果使用了<code>@JvmOverloads</code>进行注解的话，在<code>Java</code>交互时，会针对参数进行重载。<br> <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//Kotlin</span></span><br><span class="line"> <span class="meta">@JvmOverloads</span> <span class="function"><span class="keyword">fun</span> <span class="title">f</span><span class="params">(a: <span class="type">String</span> = <span class="string">"a"</span>, b: <span class="type">Int</span> = <span class="number">2</span>, c: <span class="type">Boolean</span> = <span class="literal">false</span>)</span></span>: <span class="built_in">Unit</span> &#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在Java端可以调用</span></span><br><span class="line">a.f(<span class="string">"1"</span>)</span><br><span class="line">a.f(<span class="string">"1"</span>, <span class="number">2</span>)</span><br><span class="line">a.f(<span class="string">"1"</span>, <span class="number">2</span>, <span class="literal">false</span>)</span><br></pre></td></tr></table></figure></p>
+<h4 id="9、异常捕获"><a href="#9、异常捕获" class="headerlink" title="9、异常捕获"></a>9、异常捕获</h4><p> 由于<code>Kotlin</code>没有异常捕获，因此如果在<code>Java</code>调用<code>Kotlin</code>方法时想要添加<code>try catch</code>时，需要在函数顶部添加注解<code>@Throws(异常类)</code></p>
 
         
         <br>
