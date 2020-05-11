@@ -72,7 +72,7 @@
       
         <li class="list-item">
           
-            <a href="/" class="item-link active">Home</a>
+            <a href="/" class="item-link">Home</a>
           
         </li>
       
@@ -111,7 +111,7 @@
         
           <li class="menu-item">
             
-              <a href="/" class="menu-link mobile-active">Home</a>
+              <a href="/" class="menu-link">Home</a>
             
           </li>
         
@@ -144,71 +144,48 @@
   </div>
 </header>
 
-    <main class="app-body">
+    <div id="article-banner">
+  <h2>Archives</h2>
+  <p class="post-date">文章归档</p>
+</div>
+<main class="app-body" id="archives">
   
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2020/05/09/%E6%89%8B%E5%86%99call-apply-bind-new/">手写call apply bind new</a>
-      </h2>
-      <p class="article-date">2020年5月9日</p>
-      
-      <div class="article-summary">
-        
-          
-        
+  
+  
+    <section class="time-section">
+  <h1 class="section-year">
+    2020
+  </h1>
+  <div class="section-list">
+    
+    
+      <div class="section-list-item">
+        <a href="/2020/05/09/%E6%89%8B%E5%86%99call-apply-bind-new/" class="archive-title">手写call apply bind new</a>
+        <p class="archive-date">05-09</p>
       </div>
-      <a class="more" href="/2020/05/09/%E6%89%8B%E5%86%99call-apply-bind-new/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2020/05/09/%E6%89%8B%E5%86%99%E7%AE%80%E5%8D%95Promise/">手写简单Promise</a>
-      </h2>
-      <p class="article-date">2020年5月9日</p>
-      
-        
-  <a href="/tags#Promise" >
-    <span class="tag-code">Promise</span>
-  </a>
-
-  <a href="/tags#Javasript" >
-    <span class="tag-code">Javasript</span>
-  </a>
-
-  <a href="/tags#ES6" >
-    <span class="tag-code">ES6</span>
-  </a>
-
-      
-      <div class="article-summary">
-        
-          参考
-什么是PromisePromise是Javascript异步编程的一种解决方案，主要是解决地狱回调问题。但Promise具体原理是怎样的？我们今天就来手写一个简单的Promise。
-一、Promise一共有三种状态初始状态是pending，成功是fulfilled，失败时rejecte ...
-        
+    
+      <div class="section-list-item">
+        <a href="/2020/05/09/%E6%89%8B%E5%86%99%E7%AE%80%E5%8D%95Promise/" class="archive-title">手写简单Promise</a>
+        <p class="archive-date">05-09</p>
       </div>
-      <a class="more" href="/2020/05/09/%E6%89%8B%E5%86%99%E7%AE%80%E5%8D%95Promise/">Read more</a>
-    </article>
-  
-    <article class="article-card">
-      <h2 class="article-head">
-        <a href="/2020/05/08/hello-world/">Hello World</a>
-      </h2>
-      <p class="article-date">2020年5月8日</p>
-      
-      <div class="article-summary">
-        
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer ...
-        
+    
+      <div class="section-list-item">
+        <a href="/2020/05/08/hello-world/" class="archive-title">Hello World</a>
+        <p class="archive-date">05-08</p>
       </div>
-      <a class="more" href="/2020/05/08/hello-world/">Read more</a>
-    </article>
-  
-
+    
+  </div>
+</section>
   
 </main>
 
-
+<script>
+  (function () {
+    var url = 'http://yoursite.com/archives/2020/index.html';
+    $('#article-banner').geopattern(url);
+    $('.header').removeClass('fixed-header');
+  })();
+</script>
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>

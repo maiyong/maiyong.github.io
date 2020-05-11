@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      手写简单Promise | maiy&#39;s blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>maiy's blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>手写简单Promise</h2>
+  <p class="post-date">2020-05-09</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p><a href="https://juejin.im/post/5b2f02cd5188252b937548ab#" target="_blank" rel="noopener">参考</a></p>
+<h3 id="什么是Promise"><a href="#什么是Promise" class="headerlink" title="什么是Promise"></a>什么是Promise</h3><p><code>Promise</code>是<code>Javascript</code>异步编程的一种解决方案，主要是解决地狱回调问题。但Promise具体原理是怎样的？我们今天就来手写一个简单的Promise。</p>
+<h3 id="一、Promise一共有三种状态"><a href="#一、Promise一共有三种状态" class="headerlink" title="一、Promise一共有三种状态"></a>一、Promise一共有三种状态</h3><p>初始状态是<code>pending</code>，成功是<code>fulfilled</code>，失败时<code>rejected</code>。状态只能从初始状态到成功或者失败，不能够逆转。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(executor) &#123;</span><br><span class="line">    <span class="keyword">this</span>.state = <span class="string">'pending'</span>;</span><br><span class="line">    <span class="keyword">this</span>.value = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="keyword">this</span>.reason = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="comment">/* 当reslove函数被执行时，状态从pending到fulfilled */</span></span><br><span class="line">    <span class="keyword">let</span> resolve = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123; </span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'pending'</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.state = <span class="string">'fulfilled'</span>;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">/* 当reslove函数被执行时，状态从pending到rejected */</span></span><br><span class="line">    <span class="keyword">let</span> reject = <span class="function">(<span class="params">reason</span>) =&gt;</span> &#123; </span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'pending'</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.state = <span class="string">'rejected'</span>;</span><br><span class="line">        <span class="keyword">this</span>.reason = reason;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      executor(resolve, reject);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      reject(e);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、实现异步then功能"><a href="#二、实现异步then功能" class="headerlink" title="二、实现异步then功能"></a>二、实现异步then功能</h3><p>第一步实现的功能主要是<code>Promise</code>状态转变，但是并没有实现<code>Promise</code>最主要的<code>then</code>功能以及链式调用，下面我们来实现一个<code>then</code>函数功能。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(executor) &#123;</span><br><span class="line">    <span class="keyword">this</span>.state = <span class="string">'pending'</span>;</span><br><span class="line">    <span class="keyword">this</span>.value = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="keyword">this</span>.reason = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="keyword">this</span>.onResolvedCallback = [];</span><br><span class="line">    <span class="keyword">this</span>.onRejectedCallback = [];</span><br><span class="line">    <span class="comment">/* 当reslove函数被执行时，状态从pending到fulfilled */</span></span><br><span class="line">    <span class="keyword">let</span> resolve = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123; </span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'pending'</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.state = <span class="string">'fulfilled'</span>;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">        <span class="keyword">this</span>.onResolvedCallback.map(<span class="function">(<span class="params">v</span>) =&gt;</span> v());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">/* 当reslove函数被执行时，状态从pending到rejected */</span></span><br><span class="line">    <span class="keyword">let</span> reject = <span class="function">(<span class="params">reason</span>) =&gt;</span> &#123; </span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'pending'</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.state = <span class="string">'rejected'</span>;</span><br><span class="line">        <span class="keyword">this</span>.reason = reason;</span><br><span class="line">        <span class="keyword">this</span>.onRejectedCallback.map(<span class="function">(<span class="params">v</span>) =&gt;</span> v());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      executor(resolve, reject);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      reject(e);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  then(onFulFilled, onRejected) &#123;</span><br><span class="line">    <span class="comment">/* 如果是异步的话先把函数存起来，待resolve/reject函数执行后再回调 */</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'pending'</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.onResolvedCallback.push(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        onFulFilled(<span class="keyword">this</span>.value);</span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">this</span>.onRejectedCallback.push(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        onRejected(<span class="keyword">this</span>.reason);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'fulfilled'</span>) &#123;</span><br><span class="line">      onFulFilled(<span class="keyword">this</span>.value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'rejected'</span>) &#123;</span><br><span class="line">    	onRejected(<span class="keyword">this</span>.reason);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、链式调用"><a href="#三、链式调用" class="headerlink" title="三、链式调用"></a>三、链式调用</h3><p>到这里已经已经能够进行简单的<code>Promise</code>使用了，但是<code>Promise</code>最牛X的功能链式调用还没有实现，目前<code>then</code>方法执行后没有任何操作了，正常的情况应该是返回一个<code>Promise</code>，因此我们需要实现链式调用，要实现链式调用需要实现两个步骤</p>
+<ul>
+<li><code>then</code>方法返回一个新的<code>Promise</code></li>
+<li>根据<code>then</code>方法返回的参数做处理<ul>
+<li>判断res是不是<code>Promise</code></li>
+<li>如果是则<code>取它的结果</code>作为新的promise2成功的结果</li>
+<li>如果是普通值，则直接作为promise2的返回值<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promise2</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(executor) &#123;</span><br><span class="line">    <span class="keyword">this</span>.state = <span class="string">'pending'</span>;</span><br><span class="line">    <span class="keyword">this</span>.value = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="keyword">this</span>.reason = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="keyword">this</span>.onResolvedCallback = [];</span><br><span class="line">    <span class="keyword">this</span>.onRejectedCallback = [];</span><br><span class="line">    <span class="comment">/* 当reslove函数被执行时，状态从pending到fulfilled */</span></span><br><span class="line">    <span class="keyword">let</span> resolve = <span class="function">(<span class="params">value</span>) =&gt;</span> &#123; </span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'pending'</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.state = <span class="string">'fulfilled'</span>;</span><br><span class="line">        <span class="keyword">this</span>.value = value;</span><br><span class="line">        <span class="keyword">this</span>.onResolvedCallback.forEach(<span class="function">(<span class="params">v</span>) =&gt;</span> v());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">/* 当reslove函数被执行时，状态从pending到rejected */</span></span><br><span class="line">    <span class="keyword">let</span> reject = <span class="function">(<span class="params">reason</span>) =&gt;</span> &#123; </span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'pending'</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.state = <span class="string">'rejected'</span>;</span><br><span class="line">        <span class="keyword">this</span>.reason = reason;</span><br><span class="line">        <span class="keyword">this</span>.onRejectedCallback.forEach(<span class="function">(<span class="params">v</span>) =&gt;</span> v());</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      executor(resolve, reject);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      reject(e);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  then(onFulFilled, onRejected) &#123;</span><br><span class="line">    <span class="comment">/* 用于解决then方法返回promise的返回参数的函数 */</span></span><br><span class="line">    <span class="keyword">const</span> onResolvePromise = <span class="function"><span class="keyword">function</span>(<span class="params">promise2, res, resolve, reject</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (promise2 === res) &#123;</span><br><span class="line">        reject(<span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">'不能重复使用promise'</span>));</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">/** 如果不为null而且是对象的话，就往下走判断是否是Promise  **/</span></span><br><span class="line">      <span class="keyword">if</span> (res !== <span class="literal">null</span> &amp;&amp; (<span class="keyword">typeof</span> res === <span class="string">'object'</span> || <span class="keyword">typeof</span> res === <span class="string">'function'</span>)) &#123;</span><br><span class="line">        <span class="keyword">const</span> then = res.then;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> then === <span class="string">'function'</span>) &#123;</span><br><span class="line">          then.call(res, (x) =&gt; &#123;</span><br><span class="line">            onResolvePromise(promise2, x, resolve, reject);</span><br><span class="line">          &#125;, (y) =&gt; &#123;</span><br><span class="line">            reject(y);</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          resolve(res);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        resolve(res);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> p2 = <span class="keyword">new</span> Promise2(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">/* 如果是异步的话先把函数存起来，待resolve/reject函数执行后再回调 */</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'pending'</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.onResolvedCallback.push(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="comment">/* 不能被同步调用 */</span></span><br><span class="line">          setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">              <span class="keyword">const</span> res = onFulFilled(<span class="keyword">this</span>.value);</span><br><span class="line">              onResolvePromise(p2, res, resolve, reject);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">              reject(e);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;, <span class="number">0</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">/* 不能被同步调用 */</span></span><br><span class="line">        <span class="keyword">this</span>.onRejectedCallback.push(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">              <span class="keyword">const</span> res = onRejected(<span class="keyword">this</span>.reason);</span><br><span class="line">              onResolvePromise(p2, res, resolve, reject);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">              reject(e);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;, <span class="number">0</span>)</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">/* 不能被同步调用 */</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'fulfilled'</span>) &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> res = onFulFilled(<span class="keyword">this</span>.value);</span><br><span class="line">            onResolvePromise(p2, res, resolve, reject);</span><br><span class="line">          &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">            reject(e);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;, <span class="number">0</span>);	</span><br><span class="line"></span><br><span class="line">      &#125;  </span><br><span class="line">      <span class="comment">/* 不能被同步调用 */</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.state === <span class="string">'rejected'</span>) &#123;</span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> res = onRejected(<span class="keyword">this</span>.reason);</span><br><span class="line">    	      onResolvePromise(p2, res, resolve, reject);	</span><br><span class="line">          &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">            reject(e);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;, <span class="number">0</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> p2;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>到这里已经完成了<code>Promise</code>的大致功能了，但还有一些方法未实现，比如异常处理比如<code>catch</code>方法，还有<code>all</code>方法等后续有时间一一实现。</p>
+<ul>
+<li>catch：主要是实现了链式捕获异常</li>
+<li>all：用数组形式运行多个<code>Promise</code>，只有数组里的状态都为<code>fulfilled</code>后，总的<code>Promise</code>状态才会变为<code>fulfilled</code>，否则会变成<code>rejected</code>。</li>
+<li>race：接收一组<code>Promise</code>，只要任意一个<code>Promise</code>状态改变，那总的<code>Promise</code>也会跟着改变，而且会接收该<code>Promise</code>的返回参数</li>
+<li>any：接收一组<code>Promise</code>，只要任意一个<code>Promise</code>状态变更<code>fulfilled</code>，那总的<code>Promise</code>也会变更<code>fulfilled</code>，如果数组里的<code>Promise</code>状态变成<code>rejected</code>的话，总的也会变成<code>rejected</code></li>
+<li>allSettled：接收一组<code>Promise</code>，等所有的<code>Promise</code>状态都变了之后才会结束</li>
+<li>finally：最后执行该方法</li>
+</ul>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Promise" >
+    <span class="tag-code">Promise</span>
+  </a>
+
+  <a href="/tags#Javasript" >
+    <span class="tag-code">Javasript</span>
+  </a>
+
+  <a href="/tags#ES6" >
+    <span class="tag-code">ES6</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/05/08/hello-world/">
+        <span class="nav-arrow">← </span>
+        
+          Hello World
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2020/05/09/%E6%89%8B%E5%86%99call-apply-bind-new/">
+        
+          手写call apply bind new
+        
+        <span class="nav-arrow"> →</span>
+      </a>
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- No Comment -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么是Promise"><span class="toc-nav-text">什么是Promise</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一、Promise一共有三种状态"><span class="toc-nav-text">一、Promise一共有三种状态</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二、实现异步then功能"><span class="toc-nav-text">二、实现异步then功能</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#三、链式调用"><span class="toc-nav-text">三、链式调用</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#总结"><span class="toc-nav-text">总结</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2020/05/09/手写简单Promise/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng" target="_blank" rel="noopener">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
