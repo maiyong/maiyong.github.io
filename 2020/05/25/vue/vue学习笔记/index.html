@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      vue 实例/模版语法 | maiy&#39;s blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>maiy's blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>vue 实例/模版语法</h2>
+  <p class="post-date">2020-05-25</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h3 id="vue-实例-模版语法"><a href="#vue-实例-模版语法" class="headerlink" title="vue 实例/模版语法"></a>vue 实例/模版语法</h3><h4 id="vue-实例"><a href="#vue-实例" class="headerlink" title="vue 实例"></a>vue 实例</h4><h5 id="数据与方法"><a href="#数据与方法" class="headerlink" title="数据与方法"></a>数据与方法</h5><p>当一个Vue实例被创建时，会把<code>data</code>中所有的property加入到<code>响应式系统</code>中，意思就是property的值变动，那么视图也会跟着相应。</p>
+<ul>
+<li>当实例创建后，如果添加新的property的话，被创建的值改动不会导致视图更新。</li>
+<li>如果data对象使用了<code>Object.freeze()</code>的话，响应系统也无法追踪变化</li>
+</ul>
+<h5 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h5><p>理解生命周期是对一个框架最基本也是最重要的部分，不可以用箭头函数形式声明生命周期函数，因为箭头函数没this，而this会从上级词法作用域查找，就会出现不可预估的错误。</p>
+<ul>
+<li>beforeCreate：实例初始化后调用，数据观测(data observer) 和 event/watcher 事件配置之前被调用</li>
+<li>created：vue实例被创建后被调用，数据观测已经开始，但是还没挂载到dom，$el目前不可以使用</li>
+<li>beforeMount：挂载前被调用</li>
+<li>mounted：实例被挂载完后被调用，不保证所有的子组件都被挂载完，如果希望所有子组件都更新完可以调用vm.$nextTick</li>
+<li>beforeUpdate：数据更新时被调用，发生在virtual Dom 打补丁前，适合访问现有的dom，移除事件监听器</li>
+<li>updated：虚拟Dom重新渲染和打补丁后调用，不建议在这个函数更新状态，建议使用computed或者watcher更新</li>
+<li>actived：被keep-alive缓存的组件激活时调用</li>
+<li>deactivated：被keep-alive缓存的组件停用时被调用</li>
+<li>beforeDestroy：实例被摧毁前调用，实例仍然可以用</li>
+<li>destroyed：实例被摧毁后调用</li>
+<li>errorCaptured：当捕获一个来自子孙组件的错误时被调用</li>
+</ul>
+<p><img src="https://cn.vuejs.org/images/lifecycle.png" alt="image"></p>
+<h4 id="模版语法"><a href="#模版语法" class="headerlink" title="模版语法"></a>模版语法</h4><p>Vue主要利用模板语法把模版编译成<code>虚拟DOM</code>，结合响应式系统，计算出需要重新渲染多少组件，并把DOM操作数减至最少。</p>
+<h5 id="差值"><a href="#差值" class="headerlink" title="差值"></a>差值</h5><ul>
+<li>文本：双大括号Mustache语法，</li>
+<li>原始HTML：使用v-html指令输出，但是容易被XSS攻击</li>
+<li>Attribute：使用v-bind可以动态绑定attribute值</li>
+<li>使用Javascript表达式：在大括号以及attribute都可以使用一个表达式，但是不建议，建议使用computed属性。模板表达式都是被放在沙盒中，只能访问全局变量的一个白名单，无法访问用户自己定义的全局变量。</li>
+</ul>
+<h5 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h5><p>是指带有<code>v-</code>的attribute，指责是当表达式值变更时会响应式作用于DOM</p>
+<ul>
+<li>动态参数：如v-bind:[someAttr]</li>
+<li>修饰符：使用.表达式指定修饰符，如.prevent，v-on:submit.prevent告知调用event.preventDefault()。</li>
+</ul>
+<h4 id="计算属性-computed"><a href="#计算属性-computed" class="headerlink" title="计算属性(computed)"></a>计算属性(computed)</h4><p>计算属性会缓存计算出来的值，如果计算属性中计算的值发生变化，那计算属性的函数会重新被调用，重新计算，即基于<code>响应式依赖</code>进行缓存。</p>
+<h4 id="侦听属性-watch"><a href="#侦听属性-watch" class="headerlink" title="侦听属性(watch)"></a>侦听属性(watch)</h4><p>侦听器与计算属性类似，就是属性变更时会重新调用侦听器。一般用于属性变更时重新发请求这些场景。</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#前端" >
+    <span class="tag-code">前端</span>
+  </a>
+
+  <a href="/tags#vue" >
+    <span class="tag-code">vue</span>
+  </a>
+
+  <a href="/tags#生命周期" >
+    <span class="tag-code">生命周期</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/05/11/%E6%89%8B%E5%86%99call-apply-bind-new/">
+        <span class="nav-arrow">← </span>
+        
+          手写常用的js方法(call apply bind new等)
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- No Comment -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#vue-实例-模版语法"><span class="toc-nav-text">vue 实例&#x2F;模版语法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#vue-实例"><span class="toc-nav-text">vue 实例</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#数据与方法"><span class="toc-nav-text">数据与方法</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#生命周期"><span class="toc-nav-text">生命周期</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#模版语法"><span class="toc-nav-text">模版语法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#差值"><span class="toc-nav-text">差值</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#指令"><span class="toc-nav-text">指令</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#计算属性-computed"><span class="toc-nav-text">计算属性(computed)</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#侦听属性-watch"><span class="toc-nav-text">侦听属性(watch)</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2020/05/25/vue/vue学习笔记/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng" target="_blank" rel="noopener">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
