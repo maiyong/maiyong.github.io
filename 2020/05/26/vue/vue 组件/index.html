@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      vue 组件 | maiy&#39;s blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>maiy's blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>vue 组件</h2>
+  <p class="post-date">2020-05-26</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h3 id="vue-组件"><a href="#vue-组件" class="headerlink" title="vue 组件"></a>vue 组件</h3><h4 id="组件注册"><a href="#组件注册" class="headerlink" title="组件注册"></a>组件注册</h4><h5 id="全局注册"><a href="#全局注册" class="headerlink" title="全局注册"></a>全局注册</h5><p>使用<code>Vue.component(&#39;name&#39;)</code>进行注册的组件都是全局注册，可以在程序任意位置使用</p>
+<h5 id="局部注册"><a href="#局部注册" class="headerlink" title="局部注册"></a>局部注册</h5><p>直接在组件的<code>components</code>属性中进行声明即可</p>
+<h4 id="Prop"><a href="#Prop" class="headerlink" title="Prop"></a>Prop</h4><h5 id="单向数据流"><a href="#单向数据流" class="headerlink" title="单向数据流"></a>单向数据流</h5><p>所有的<code>prop</code>都使得其父子<code>prop</code>之间形成了一个单向下行绑定，目的是防止数据流混乱，每次父组件更新时，子组件的所有<code>prop</code>都会更新到最新，也就是说不能在组件中修改<code>prop</code>。</p>
+<h5 id="类型检查"><a href="#类型检查" class="headerlink" title="类型检查"></a>类型检查</h5><p>可以对<code>prop</code>类型进行检查验证，当类型验证失败时，<code>Vue</code>会发出一个警告，类型有</p>
+<ul>
+<li>String</li>
+<li>Number</li>
+<li>Boolean</li>
+<li>Array</li>
+<li>Object</li>
+<li>Date</li>
+<li>Function</li>
+<li>Symbol</li>
+</ul>
+<h5 id="非Prop的Attribute"><a href="#非Prop的Attribute" class="headerlink" title="非Prop的Attribute"></a>非Prop的Attribute</h5><p>组件与根标签<code>class</code>与<code>style</code>attribute会对传进来的值进行合并，而其他会被替换。如果不想继承组件的attribute，可以使用<code>inheritAttrs: false</code>，但是这个声明对<code>class</code>与<code>style</code>无效</p>
+<h4 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h4><p>可以使用<code>this.$emit(&#39;name&#39;)</code>与父组件进行事件通信。</p>
+<h5 id="编译作用域"><a href="#编译作用域" class="headerlink" title="编译作用域"></a>编译作用域</h5><p>就是说父模版的所有内容都是在父级进行编译，因此插槽是编译后才被显示在子模版。如果需要引用子组件的props，可以使用作用域插槽，意思就是通过v-bind与v-slot:defalut来进行绑定。</p>
+<h5 id="后备内容"><a href="#后备内容" class="headerlink" title="后备内容"></a>后备内容</h5><p>有个场景是无数据时显示无数据内容，有传数据就显示传进来的数据，<code>slot</code>就可以实现，如</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这种情况如果组件没传模版内容进来就显示Submit，否则显示传进来的内容 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">slot</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="具名插槽"><a href="#具名插槽" class="headerlink" title="具名插槽"></a>具名插槽</h5><p>每个插槽都有名称，没有名称的叫<code>default</code>，使用的时候就可以这样</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-slot:header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="插槽的缩写"><a href="#插槽的缩写" class="headerlink" title="插槽的缩写"></a>插槽的缩写</h5><p>与<code>v-on</code>和<code>v-bind</code>一样，<code>v-slot</code>也有缩写，#就可以</p>
+<h4 id="动态组件"><a href="#动态组件" class="headerlink" title="动态组件"></a>动态组件</h4><h5 id="keep-alive"><a href="#keep-alive" class="headerlink" title="keep-alive"></a>keep-alive</h5><p><code>keep-alive</code>是一个保存组件状态的一个标签，如</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">keep-alive</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 失活的组件会缓存起来 -- &gt;</span></span><br><span class="line"><span class="comment">  &lt;component v-bind:is="currentTabComponent"&gt;&lt;/component&gt;</span></span><br><span class="line"><span class="comment">&lt;/keep-alive&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="处理边界"><a href="#处理边界" class="headerlink" title="处理边界"></a>处理边界</h4><h5 id="访问元素"><a href="#访问元素" class="headerlink" title="访问元素"></a>访问元素</h5><ul>
+<li><p>访问根实例<br>可以使用<code>this.$root</code>来访问根实例中的属性，适用小规模的程序。</p>
+</li>
+<li><p>访问子组件实例<br>可以使用<code>ref</code>来访问子组件的实例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">ref</span>=<span class="string">"input"</span>&gt;</span><span class="tag">&lt;/<span class="name">input</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>访问父级组件实例<br>和<code>$root</code>一样，可以使用<code>$parent</code>访问父组件的属性</p>
+</li>
+<li><p>依赖注入<br>如果所有的子组件都需要访问父组件的一个方法，那么就可以使用<code>provide</code>与<code>inject</code>，<code>provide</code>在父组件声明方法，<code>inject</code>在子组件中接收。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 父组件</span><br><span class="line">provide: function() &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    getMap: this.getMap</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 子组件</span><br><span class="line">inject: ['getMap']</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="程序化的事件侦听器"><a href="#程序化的事件侦听器" class="headerlink" title="程序化的事件侦听器"></a>程序化的事件侦听器</h4><p>其实就是事件侦听，通过<code>$emit</code>与<code>$on</code>，<code>$once</code>，<code>$off</code>三个事件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mounted: function() &#123;</span><br><span class="line">  var picker = new Pikaday(&#123;</span><br><span class="line">    field: this.$ref.input,</span><br><span class="line">    format: 'YYYY-MM-DD'</span><br><span class="line">  &#125;) </span><br><span class="line">  this.$once('hook:beforeDestroy', function() &#123;</span><br><span class="line">    picker.destroy()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="进入-离开-amp-列表过度"><a href="#进入-离开-amp-列表过度" class="headerlink" title="进入/离开&amp;列表过度"></a>进入/离开&amp;列表过度</h4><p>Vue提供了<code>transition</code>的封装组件，在<code>条件渲染(v-if)</code>，<code>条件展示(v-show)</code>，<code>动态组件</code>，<code>组件根节点</code>会添加过渡。当插入或删除包含在<code>transition</code>组件中的元素，Vue会做以下处理：</p>
+<ul>
+<li>判断目标元素是否应用了<code>CSS过渡或动画</code>，如果是，会在恰当的时机添加/删除CSS类名</li>
+<li>如果过渡组件提供了<code>钩子函数</code>，则这些函数会被调用。</li>
+<li>如果没有<code>钩子函数</code>和<code>CSS过渡动画</code>，则下一帧会立即执行。<h5 id="过渡的类名"><a href="#过渡的类名" class="headerlink" title="过渡的类名"></a>过渡的类名</h5>6个</li>
+<li>v-enter<br>开始过渡状态</li>
+<li>v-enter-active<br>进入过渡动画生效状态</li>
+<li>v-enter-to<br>结束过渡状态</li>
+<li>v-leave<br>开始离开过渡状态</li>
+<li>v-leave<br>离开过渡生效状态</li>
+<li>v-leave-to<br>离开过渡结束状态</li>
+</ul>
+<h5 id="列表的过渡"><a href="#列表的过渡" class="headerlink" title="列表的过渡"></a>列表的过渡</h5><p>使用<code>&lt;transition-group&gt;</code>组件进行过渡</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#前端" >
+    <span class="tag-code">前端</span>
+  </a>
+
+  <a href="/tags#vue" >
+    <span class="tag-code">vue</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/05/25/vue/vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+        <span class="nav-arrow">← </span>
+        
+          vue 实例/模版语法
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- No Comment -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#vue-组件"><span class="toc-nav-text">vue 组件</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#组件注册"><span class="toc-nav-text">组件注册</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#全局注册"><span class="toc-nav-text">全局注册</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#局部注册"><span class="toc-nav-text">局部注册</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Prop"><span class="toc-nav-text">Prop</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#单向数据流"><span class="toc-nav-text">单向数据流</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#类型检查"><span class="toc-nav-text">类型检查</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#非Prop的Attribute"><span class="toc-nav-text">非Prop的Attribute</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#自定义事件"><span class="toc-nav-text">自定义事件</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#编译作用域"><span class="toc-nav-text">编译作用域</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#后备内容"><span class="toc-nav-text">后备内容</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#具名插槽"><span class="toc-nav-text">具名插槽</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#插槽的缩写"><span class="toc-nav-text">插槽的缩写</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#动态组件"><span class="toc-nav-text">动态组件</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#keep-alive"><span class="toc-nav-text">keep-alive</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#处理边界"><span class="toc-nav-text">处理边界</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#访问元素"><span class="toc-nav-text">访问元素</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#程序化的事件侦听器"><span class="toc-nav-text">程序化的事件侦听器</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#进入-离开-amp-列表过度"><span class="toc-nav-text">进入&#x2F;离开&amp;列表过度</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#过渡的类名"><span class="toc-nav-text">过渡的类名</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#列表的过渡"><span class="toc-nav-text">列表的过渡</span></a></li></ol></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2020/05/26/vue/vue 组件/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng" target="_blank" rel="noopener">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
