@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      明源云面试 | maiy&#39;s blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<meta name="generator" content="Hexo 4.2.0"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>maiy's blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>明源云面试</h2>
+  <p class="post-date">2020-07-16</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><p>之前在明源云进行了电话面试，面试题大概如下：</p>
+<h2 id="Vue"><a href="#Vue" class="headerlink" title="Vue"></a>Vue</h2><h3 id="vueRouter-history模式与hash模式"><a href="#vueRouter-history模式与hash模式" class="headerlink" title="vueRouter history模式与hash模式"></a>vueRouter history模式与hash模式</h3><h4 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h4><p>hash模式主要是根据<code>window.onhashchange</code>事件函数监听url里hash值的变换来进行路由的跳转，而且服务器永远只会识别<code>/#/</code>前面的部分，不需要在服务器配置所有的路由url</p>
+<h4 id="history"><a href="#history" class="headerlink" title="history"></a>history</h4><p>history模式没有<code>/#/</code>号，是根据<code>history</code>这个浏览器对象来实现路由的跳转，有<code>go</code>、<code>back</code>、<code>forward</code>、<code>pushState</code>、<code>replaceState</code>等api，通过<code>pushState</code>把页面的状态保存在state对象中，然后根监听<code>window.onpopstate</code>事件函数来获取<code>event.state</code>这个状态进行页面还原。但是由于histroy模式没有<code>/#/</code>这个hash标识，就需要服务器直接所有的路由地址，否则当刷新某个路由地址时，去请求服务器，服务器找不到这个地址就会报404的错误。</p>
+<h3 id="Proxy解决了什么问题"><a href="#Proxy解决了什么问题" class="headerlink" title="Proxy解决了什么问题"></a>Proxy解决了什么问题</h3><ul>
+<li>解决了<code>object.definePropertiy</code>的无法监听到对象的添加与删除，需要调用<code>Vue.set</code>方法进行添加，<code>this.$delete</code>方法进行删除才能监听到响应式系统，还可以对整个data进行重新赋值</li>
+<li>不能监听到数组的变化，现在可以是因为重新数组的一些方法</li>
+<li>只能劫持到对象的属性，如果属性是对象还需要进行深度遍历</li>
+</ul>
+<h3 id="vue-data为何要是function"><a href="#vue-data为何要是function" class="headerlink" title="vue data为何要是function"></a>vue data为何要是function</h3><p>因为组件复用会共享<code>data</code>，如果<code>data</code>是对象的话，一个组件修改<code>data</code>那同时也会影响到另一个<code>data</code>，现在组件使用了函数就解决这个问题，基于必包。</p>
+<h3 id="nextTick"><a href="#nextTick" class="headerlink" title="nextTick"></a>nextTick</h3><p>意思就是在下次DOM更新循环结束之后执行回调，比如我需要在更新<code>data</code>后需要获取真实的DOM的value，但此时是没有更新的，我们就可以使用<code>nextTick</code>设置个回调函数即可。</p>
+<hr>
+<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><h3 id="React-hook的特性"><a href="#React-hook的特性" class="headerlink" title="React hook的特性"></a>React hook的特性</h3><h4 id="为什么要hook"><a href="#为什么要hook" class="headerlink" title="为什么要hook"></a>为什么要hook</h4><ul>
+<li>使函数组件能够拥有状态</li>
+<li>很难在组件之间服用状态逻辑（解决复用问题使得很多高阶组件嵌套、render prop导致的嵌套地狱）</li>
+<li>复杂组件变得难以理解（hook可以把一些逻辑拆分为状态函数）</li>
+<li>class难以理解，需要去理解<code>this</code>的工作方式</li>
+</ul>
+<h3 id="React高阶组件-与-render-propsx"><a href="#React高阶组件-与-render-propsx" class="headerlink" title="React高阶组件 与 render propsx"></a>React高阶组件 与 render propsx</h3><h4 id="高阶组件"><a href="#高阶组件" class="headerlink" title="高阶组件"></a>高阶组件</h4><p>本质是函数，接受组件作为参数，返回一个新的组件。主要是为了解决组件功能复用问题。有两种方式</p>
+<ul>
+<li>属性代理：主要是继承React.Component，然后在<code>render</code>方法里引用传进来的组件。<ul>
+<li>可以操作props</li>
+<li>可以ref访问组件实例</li>
+<li>操作state</li>
+<li>组合html</li>
+</ul>
+</li>
+<li>反向继承：直接继承组件，render里也是返回该组件<ul>
+<li>操作state</li>
+<li>渲染劫持，可以操作render</li>
+<li>会丢失原本显示名</li>
+</ul>
+</li>
+<li>高阶组件的缺点<ul>
+<li>难以溯源，如果是由多个hoc组成的话，需要翻每个hoc知道各自的属性</li>
+<li>props属性名冲突，某个属性可能被多个hoc重复使用</li>
+<li>静态构建，需要在页面构建前生成</li>
+</ul>
+</li>
+</ul>
+<h4 id="Render-Props"><a href="#Render-Props" class="headerlink" title="Render Props"></a>Render Props</h4><p>主要也是用于功能复用，本质就是给组件传入一个<code>props</code>，然后在组件render里引用这个<code>props</code>，有以下优点</p>
+<ul>
+<li>数据单向流</li>
+<li>props不会有命名冲突</li>
+<li>可以溯源</li>
+<li>动态构建，可以在render里渲染</li>
+<li>能完成所有hoc的功能</li>
+</ul>
+<h3 id="常用的必包"><a href="#常用的必包" class="headerlink" title="常用的必包"></a>常用的必包</h3><ul>
+<li>柯里化</li>
+<li>react的hook</li>
+<li>vue的component的data</li>
+<li>计数器</li>
+<li>避免污染全局环境</li>
+</ul>
+<h3 id="React生命周期"><a href="#React生命周期" class="headerlink" title="React生命周期"></a>React生命周期</h3><ul>
+<li>constructor</li>
+<li>componentWillMount (pass)</li>
+<li>static getDerivedStateFromProps</li>
+<li>render</li>
+<li>componentDidMount</li>
+<li>shouldComponentUpdate</li>
+<li>componentWillUpdate（pass）</li>
+<li>componentWilReceiveProps(pass)</li>
+<li>static getSnapshotBeforeUpdate</li>
+<li>componentDidUpdate</li>
+<li>componentUnMount</li>
+</ul>
+<h3 id="左右定宽，中间自适应"><a href="#左右定宽，中间自适应" class="headerlink" title="左右定宽，中间自适应"></a>左右定宽，中间自适应</h3><h4 id="绝对定位"><a href="#绝对定位" class="headerlink" title="绝对定位"></a>绝对定位</h4><p>左右两边布局设置绝对定位，中间的布局左右margin，缺点是脱离文档流。</p>
+<h4 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h4><p>容器设置flex布局，中间布局flex等于1，缺点是无法直接优先加载中间布局，需要做别的处理，兼容性不是十分完美。</p>
+<h4 id="双飞翼"><a href="#双飞翼" class="headerlink" title="双飞翼"></a>双飞翼</h4><p>经典布局，兼容性好，中间内容优先加载。缺点是脱离文档流，需要清除浮动，中间布局额外DOM。</p>
+<ul>
+<li>中间布局需要包裹一层content</li>
+<li>左和content都需要设置左浮动，右布局设置右浮动</li>
+<li>content的width=100%，左边的margin-left=-100%，右边的margin-left=-右布局宽度</li>
+<li>中间布局设置左右margin为左右布局宽度<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;container&quot;&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;content&quot;&gt;</span><br><span class="line">      &lt;div class&#x3D;&quot;main&quot;&gt;main&lt;div&gt;</span><br><span class="line">  &lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div&gt;left&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div&gt;right&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">.left &#123;</span><br><span class="line">  width: 300px;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  float: left;</span><br><span class="line">  margin-left: -100%;</span><br><span class="line">&#125;</span><br><span class="line">.right &#123;</span><br><span class="line">  width: 300px;</span><br><span class="line">  float: right;</span><br><span class="line">  margin-left: -300px;</span><br><span class="line">&#125;</span><br><span class="line">.container &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  width: 100%;</span><br><span class="line">&#125;</span><br><span class="line">.main &#123;</span><br><span class="line">  margin-left: 300px;</span><br><span class="line">  margin-right: 300px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="圣杯布局"><a href="#圣杯布局" class="headerlink" title="圣杯布局"></a>圣杯布局</h4><p>也是经典布局，优点是不需要多余的DOM，其余和双飞翼一样</p>
+<ul>
+<li>左和中间都需要设置左浮动，右布局设置右浮动</li>
+<li>main的width=100%，左边的margin-left=-100%，右边的margin-left=-右布局宽度</li>
+<li>左右布局设置为相对布局，left=-300px；右布局right=-300px；</li>
+<li>容器设置左右margin为300px<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class&#x3D;&quot;container&quot;&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;main&quot;&gt;main&lt;div&gt;</span><br><span class="line">  &lt;div&gt;left&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;div&gt;right&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">.left &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  width: 300px;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  margin-left: -100%;</span><br><span class="line">  position: relative;</span><br><span class="line">  left: -300px;</span><br><span class="line">&#125;</span><br><span class="line">.right &#123;</span><br><span class="line">  float: right;</span><br><span class="line">  width: 300px;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  margin-left: -300px;</span><br><span class="line">  position: relative;</span><br><span class="line">  right: -300px;</span><br><span class="line">&#125;</span><br><span class="line">.main &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  width: 100%;</span><br><span class="line">&#125;</span><br><span class="line">.container &#123;</span><br><span class="line">  margin-left: 300px;</span><br><span class="line">  margin-right: 300px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="useCallback-与-useMemo"><a href="#useCallback-与-useMemo" class="headerlink" title="useCallback 与 useMemo"></a>useCallback 与 useMemo</h3><p>这两个hook函数的作用都是基于给定的依赖来进行缓存，而区别在于useCallback返回的是函数，而useMemo返回的是一个值。用法主要是在给子组件传递参数时，可以配合React.memo（作用是会对props做一个浅层比较，props没有修改的话，就不会渲染组件）来对子组件判断是否需要更新，从而节省不必要的更新。</p>
+<h3 id="diff的key值"><a href="#diff的key值" class="headerlink" title="diff的key值"></a>diff的key值</h3><p>key值可以在DOM中的某些元素被增加或者删除的时候帮助React识别哪些元素发生了变化。</p>
+<ul>
+<li>key值相同，组件有所变化，react会只更新组件对应变化的属性。</li>
+<li>key值不同，组件会摧毁之前的组件，讲整个组件重新渲染。</li>
+</ul>
+<h3 id="promise的all，race，allSettled"><a href="#promise的all，race，allSettled" class="headerlink" title="promise的all，race，allSettled"></a>promise的all，race，allSettled</h3><ul>
+<li>all：promiseAll接收一组promise，只有这组promise全部状态变成fulfilled后，promiseAll状态才会变成fulfilled，此时返回值是一个数组,如果任意一个promise变成rejected，则promiseAll状态也会变成rejected，rejected返回值传给promiseAll</li>
+<li>race：参数与all的是一样，但是race只要任意一个promise状态变更后，promiseRace的状态也会跟着变，比如可以用来给promise设置超时时间。</li>
+<li>allSettled：只有所有的promise状态都变更后，包装实例才会结束，结束后状态总是fulfiled，参数是数组，如[{status: ‘fulfilled’, value: 43}]。</li>
+<li>any：只要任意一个变成fulfilled后，实例才会变成fulfilled，等所有实例变成rejected后，实例才会变成rejected。</li>
+</ul>
+<h3 id="bfc"><a href="#bfc" class="headerlink" title="bfc"></a>bfc</h3><p>bfc是一个独立的容器，有它自己的布局流</p>
+<h4 id="触发BFC"><a href="#触发BFC" class="headerlink" title="触发BFC"></a>触发BFC</h4><ul>
+<li>body 根元素</li>
+<li>浮动</li>
+<li>绝对定位</li>
+<li>disaplay: inline-block、table-cells、flex</li>
+<li>overflow：hidden、auto、scroll</li>
+</ul>
+<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><ul>
+<li>解决BFC下外边距折叠</li>
+<li>清除浮动</li>
+</ul>
+<h3 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h3><ul>
+<li>额外标签，添加标签加上属性clear: both;</li>
+<li>overflow: hidden，内容被隐藏</li>
+<li>after伪元素<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h3><h4 id="content-box"><a href="#content-box" class="headerlink" title="content-box"></a>content-box</h4><p>元素的宽度=width+padding+border+margin</p>
+<h4 id="border-box"><a href="#border-box" class="headerlink" title="border-box"></a>border-box</h4><p>元素的宽度=width，所有的padding、border、margin都包含在width里了</p>
+<h3 id="thunk与sega有啥不同"><a href="#thunk与sega有啥不同" class="headerlink" title="thunk与sega有啥不同"></a>thunk与sega有啥不同</h3><h4 id="thunk"><a href="#thunk" class="headerlink" title="thunk"></a>thunk</h4><ul>
+<li>使用简单，直接dispatch一个函数</li>
+<li>action形式不统一</li>
+<li>action不易维护，每个异步都需要一个函数</li>
+<li>操作分散，异步操作dispatch被分散在各个action中</li>
+</ul>
+<h4 id="sega"><a href="#sega" class="headerlink" title="sega"></a>sega</h4><p>自己封装了一整套异步处理流程</p>
+<ul>
+<li>使用了generator语法</li>
+<li>集中处理所有异步操作</li>
+<li>action是普通对象</li>
+<li>使用effect可以方便单元测试</li>
+<li>异步操作流程可控制，随时取消</li>
+<li>学习成本高</li>
+</ul>
+<h3 id="什么时候触发gpu加速"><a href="#什么时候触发gpu加速" class="headerlink" title="什么时候触发gpu加速"></a>什么时候触发gpu加速</h3><p>可以通过CSS属性</p>
+<ul>
+<li>translate3d</li>
+<li>translateZ</li>
+<li>rotate</li>
+<li>scale</li>
+</ul>
+<h3 id="webpack-懒加载"><a href="#webpack-懒加载" class="headerlink" title="webpack 懒加载"></a>webpack 懒加载</h3><p>可以使用类似babel-plugin-syntax-dynamic-import这种预处理器，在使用时才去加载模块代码</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#前端" >
+    <span class="tag-code">前端</span>
+  </a>
+
+  <a href="/tags#Vue、React" >
+    <span class="tag-code">Vue、React</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/05/28/vue/vuex/">
+        <span class="nav-arrow">← </span>
+        
+          vuex
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- No Comment -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Vue"><span class="toc-nav-text">Vue</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#vueRouter-history模式与hash模式"><span class="toc-nav-text">vueRouter history模式与hash模式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#hash"><span class="toc-nav-text">hash</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#history"><span class="toc-nav-text">history</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Proxy解决了什么问题"><span class="toc-nav-text">Proxy解决了什么问题</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#vue-data为何要是function"><span class="toc-nav-text">vue data为何要是function</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#nextTick"><span class="toc-nav-text">nextTick</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#React"><span class="toc-nav-text">React</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#React-hook的特性"><span class="toc-nav-text">React hook的特性</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#为什么要hook"><span class="toc-nav-text">为什么要hook</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#React高阶组件-与-render-propsx"><span class="toc-nav-text">React高阶组件 与 render propsx</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#高阶组件"><span class="toc-nav-text">高阶组件</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Render-Props"><span class="toc-nav-text">Render Props</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#常用的必包"><span class="toc-nav-text">常用的必包</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#React生命周期"><span class="toc-nav-text">React生命周期</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#左右定宽，中间自适应"><span class="toc-nav-text">左右定宽，中间自适应</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#绝对定位"><span class="toc-nav-text">绝对定位</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#flex"><span class="toc-nav-text">flex</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#双飞翼"><span class="toc-nav-text">双飞翼</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#圣杯布局"><span class="toc-nav-text">圣杯布局</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#useCallback-与-useMemo"><span class="toc-nav-text">useCallback 与 useMemo</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#diff的key值"><span class="toc-nav-text">diff的key值</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#promise的all，race，allSettled"><span class="toc-nav-text">promise的all，race，allSettled</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#bfc"><span class="toc-nav-text">bfc</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#触发BFC"><span class="toc-nav-text">触发BFC</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#应用"><span class="toc-nav-text">应用</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#清除浮动"><span class="toc-nav-text">清除浮动</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#盒子模型"><span class="toc-nav-text">盒子模型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#content-box"><span class="toc-nav-text">content-box</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#border-box"><span class="toc-nav-text">border-box</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#thunk与sega有啥不同"><span class="toc-nav-text">thunk与sega有啥不同</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#thunk"><span class="toc-nav-text">thunk</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#sega"><span class="toc-nav-text">sega</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#什么时候触发gpu加速"><span class="toc-nav-text">什么时候触发gpu加速</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#webpack-懒加载"><span class="toc-nav-text">webpack 懒加载</span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2020/07/16/面试/明源云面试/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng" target="_blank" rel="noopener">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
