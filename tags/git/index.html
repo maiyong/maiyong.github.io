@@ -10,7 +10,7 @@
   
   <title>
     
-      About | maiy&#39;s blog
+      maiy&#39;s blog
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -144,46 +144,78 @@
   </div>
 </header>
 
-    <div id="about-banner" style="background-image: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1589014213694&di=b0dde2148245b3de0413a932a247fd3a&imgtype=0&src=http%3A%2F%2Fimg0.imgtn.bdimg.com%2Fit%2Fu%3D643274985%2C2283651253%26fm%3D214%26gp%3D0.jpg)"></div>
-<div class="author">
-  <div class="head">
-    <img src="http://att3.citysbs.com/200x200/hangzhou/2020/04/15/11/dd6719bd4287d9efd49434c43563a032_v2_.jpg" />
-  </div>
-  <h3>maiy</h3>
-  
-    <p class="description">keep moving</p>
-  
-  <section class="share-icons">
-    
-    
-    
-      <a class="icon-github" href="https://github.com/maiyong" target="_blank">
-        <span class="fa-stack fa-lg">
-          <i class="fa fa-circle fa-stack-2x"></i>
-          <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-        </span>
-      </a>
-    
-    
-    
-    
-  </section>
+    <div id="article-banner">
+  <h2>Archives</h2>
+  <p class="post-date">文章归档</p>
 </div>
+<main class="app-body" id="archives">
+  
+  
+  
+    <section class="time-section">
+  <h1 class="section-year">
+    2020
+  </h1>
+  <div class="section-list">
+    
+    
+      <div class="section-list-item">
+        <a href="/2020/07/27/git/git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="archive-title">git 基本操作</a>
+        <p class="archive-date">07-27</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2020/07/21/js%E7%9A%84%E7%BB%A7%E6%89%BF/" class="archive-title">js的继承</a>
+        <p class="archive-date">07-21</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2020/07/16/%E9%9D%A2%E8%AF%95/%E6%98%8E%E6%BA%90%E4%BA%91%E9%9D%A2%E8%AF%95/" class="archive-title">明源云面试</a>
+        <p class="archive-date">07-16</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2020/05/28/vue/vuex/" class="archive-title">vuex</a>
+        <p class="archive-date">05-28</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2020/05/26/vue/vue%20%E7%BB%84%E4%BB%B6/" class="archive-title">vue 组件</a>
+        <p class="archive-date">05-26</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2020/05/25/vue/vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-title">vue 实例/模版语法</a>
+        <p class="archive-date">05-25</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2020/05/11/%E6%89%8B%E5%86%99call-apply-bind-new/" class="archive-title">手写常用的js方法(call apply bind new等)</a>
+        <p class="archive-date">05-11</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2020/05/09/%E6%89%8B%E5%86%99%E7%AE%80%E5%8D%95Promise/" class="archive-title">手写简单Promise</a>
+        <p class="archive-date">05-09</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2020/05/08/hello-world/" class="archive-title">Hello World</a>
+        <p class="archive-date">05-08</p>
+      </div>
+    
+  </div>
+</section>
+  
+</main>
 
 <script>
   (function () {
-    $('.header').removeClass('fixed-header')
-    var windowH = $(window).height();
-    var author = $('.author')
-    var bodyH = author.offset().top + author[0].offsetHeight + 71;
-    if (bodyH < windowH) {
-      author.css({
-        'margin-bottom': windowH - bodyH
-      })
-    }
+    var url = 'http://yoursite.com/tags/git/index.html';
+    $('#article-banner').geopattern(url);
+    $('.header').removeClass('fixed-header');
   })();
 </script>
-
     <div class="scroll-top">
   <span class="arrow-icon"></span>
 </div>
