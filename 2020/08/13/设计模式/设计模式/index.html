@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      设计模式 | maiy&#39;s blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>maiy's blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>设计模式</h2>
+  <p class="post-date">2020-08-13</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><p>不看设计模式，写出来的代码永远不会漂亮</p>
+<h4 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h4><p>保证一个类仅有一个实例，并提供一个访问它的全局访问点。惰性单例模式是指在使用的时候才回进行创建，并且把创建对象和管理单例的职责分开。</p>
+<ul>
+<li>管理单例<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 该方法无任何业务逻辑</span></span><br><span class="line">getSingle(fn) &#123;</span><br><span class="line">  <span class="keyword">let</span> instance;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> (instance || (result = fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>创建对象<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建单例对象的义务逻辑</span></span><br><span class="line">createLoginLayer() &#123;</span><br><span class="line">  <span class="keyword">const</span> div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</span><br><span class="line">  div.innerHTML = <span class="string">'我是登陆浮窗'</span>;</span><br><span class="line">  div.style.display = <span class="string">'none'</span>;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(div);</span><br><span class="line">  <span class="keyword">return</span> div;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> createSingleLoginLayer = getSingle(createLoginLayer);</span><br><span class="line"><span class="comment">// 点击的时候才创建</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'loginBtn'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> loginLayer = createSingleLoginLayer();</span><br><span class="line">  loginLayer.style.display = <span class="string">'block'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h4>定义一系列的算法，把他们一个个封装起来，并且使它们可以相互替换。一个策略模式程序至少有两部分组成，第一部分是一组策略类，封装了所有的算法。另一部分是环境类Context，接受请求然后委托到某个策略类。当一个类有过多的if else时，就需要考虑使用策略模式进行重构了。</li>
+<li>利用组合、委托和多态思想，有效的避免多重条件选择语句</li>
+<li>开发-封闭原则的完美支持，讲算法封装在strategy中，使得它容易切换、易于理解和扩展</li>
+<li>复用</li>
+<li>例子：表单校验<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 一系列的算法策略</span></span><br><span class="line"><span class="keyword">const</span> strategies = &#123;</span><br><span class="line">  isNotEmpty(value, errorMsg) &#123;</span><br><span class="line">    <span class="keyword">if</span> (value === <span class="string">''</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> errorMsg;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  minLength(value, length, errorMsg) &#123;</span><br><span class="line">    <span class="keyword">if</span> (value.length &lt; length) &#123;</span><br><span class="line">      <span class="keyword">return</span> errorMsg;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  isMobile(value, errorMsg) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="regexp">/(^1[3|5|8][0-9]&#123;9&#125;$)/</span>.test(value)) &#123;</span><br><span class="line">      <span class="keyword">return</span> errorMsg;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 接收请求，然后委托给策略算法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Validator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.cache = []; <span class="comment">// 保存一系列的校验规则</span></span><br><span class="line">&#125;</span><br><span class="line">Validator.prototype.add = <span class="function"><span class="keyword">function</span>(<span class="params">value, rule, errorMsg</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> ary = rule.split(<span class="string">':'</span>); <span class="comment">// 把strategy和参数分开，如minLength:6</span></span><br><span class="line">  <span class="keyword">this</span>.cache.push(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="comment">// 把校验的步骤存起来</span></span><br><span class="line">    <span class="keyword">const</span> strategy = ary.shift(); <span class="comment">// 用户的strategy</span></span><br><span class="line">    ary.unshift(value); <span class="comment">// 把input的value添加到参数列表</span></span><br><span class="line">    ary.push(errorMsg)</span><br><span class="line">    <span class="keyword">return</span> strategies[strategy].apply(value, ary);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">Validator.prototype.start = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.cache.length; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> func = <span class="keyword">this</span>.cache[i];</span><br><span class="line">    <span class="keyword">const</span> msg = func();</span><br><span class="line">    <span class="keyword">if</span> (msg) &#123;</span><br><span class="line">      <span class="keyword">return</span> msg;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 使用模式</span></span><br><span class="line"><span class="keyword">const</span> validator = <span class="keyword">new</span> Validator();</span><br><span class="line">validator.add(name, <span class="string">'isNotEmpty'</span>, <span class="string">'用户名不能为空'</span>);</span><br><span class="line">validator.add(paddword, <span class="string">'minLength:6'</span>, <span class="string">'密码长度不能少于6位'</span>);</span><br><span class="line"><span class="keyword">const</span> errorMsg = validator.start(); <span class="comment">// 通过判断errorMsg就可以判断是否进行表单请求</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h4><p>代理模式是为一个对象提供一个代用品，通过代用品来对这个对象进行访问。常用的有保护代理、虚拟代理和缓存代理。保护代理是指代理负责拒绝一些不适合的请求，只接受适合的请求；虚拟代理是指等到需要使用时才去创建使用对象。缓存代理是指在代理把请求的结果缓存起来，下次再请求查找如果有缓存就直接取缓存。</p>
+<ul>
+<li>虚拟代理实现图片预加载<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 该类的责职是加载图片</span></span><br><span class="line"><span class="keyword">const</span> myImage = <span class="function">(<span class="params">(</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> imgNode = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(imgNode);</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    setSrc(src) &#123;</span><br><span class="line">      <span class="comment">// 图片加载完成后再更新目标图片</span></span><br><span class="line">      imgNode.src = src;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="comment">// 代理类的责职是预加载</span></span><br><span class="line"><span class="keyword">const</span> proxyImage = <span class="function">(<span class="params">(</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 新建一个image下载图片</span></span><br><span class="line">  <span class="keyword">const</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">  img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">    myImage.setSrc(<span class="keyword">this</span>.src); <span class="comment">// 下载完成后给目标对象设置</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    setSrc(src) &#123;</span><br><span class="line">      myImage.setSrc(<span class="string">'file:///loading.png'</span>); <span class="comment">// 下载的时候显示个预加载菊花</span></span><br><span class="line">      img.src = src <span class="comment">// 开始下载图片 </span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br><span class="line">proxyImage.setSrc(<span class="string">'https://www.baidu.png'</span>);</span><br></pre></td></tr></table></figure></li>
+<li>缓存代理<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 乘法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mult</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">    a = a * <span class="built_in">arguments</span>[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 加法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">plus</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> a = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">    a += <span class="built_in">arguments</span>[i];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> a;</span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// 责职是缓存，可以给加减乘除复用</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createProxyFactory</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> cache = &#123;&#125;; <span class="comment">// 用户缓存结果</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> args = <span class="built_in">Array</span>.prototype.join.call(<span class="built_in">arguments</span>, <span class="string">','</span>);</span><br><span class="line">    <span class="keyword">if</span> (args <span class="keyword">in</span> cache) &#123; <span class="comment">// 判断有无缓存，有则返回缓存</span></span><br><span class="line">      <span class="keyword">return</span> cache[args];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 缓存结果</span></span><br><span class="line">    <span class="keyword">return</span> cache[args] = fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> proxyMult = createProxyFactory(mult);</span><br><span class="line"><span class="keyword">const</span> proxyPlus = createProxyFactory(plus);</span><br><span class="line">proxyMult(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>); <span class="comment">// 输出24</span></span><br><span class="line">proxyMult(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>); <span class="comment">// 输出缓存的24</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="发布-订阅模式"><a href="#发布-订阅模式" class="headerlink" title="发布-订阅模式"></a>发布-订阅模式</h4><p>发布-订阅模式又叫观察者模式，它定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都将得到通知。优点是可以在时间和对象之间解耦，缺点是不容易追溯。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Event = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> clientList = &#123;&#125;;</span><br><span class="line">  <span class="comment">// 用于保存监听的函数</span></span><br><span class="line">  <span class="keyword">const</span> listen = <span class="function"><span class="keyword">function</span>(<span class="params">key, fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!clientList[key]) &#123;</span><br><span class="line">      clientList[key] = [];</span><br><span class="line">    &#125;</span><br><span class="line">    clientList[key].push(fn); <span class="comment">// 存储订阅的消息</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// 通知监听函数</span></span><br><span class="line">  <span class="keyword">const</span> trigger = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> key = <span class="built_in">Array</span>.prototype.shift.call(<span class="built_in">arguments</span>);</span><br><span class="line">    <span class="keyword">const</span> fns = clientList[key];</span><br><span class="line">    <span class="keyword">if</span> (!fns || fns.length === <span class="number">0</span>) &#123; <span class="comment">// 如果没有绑定对应的消息</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; fns.length; i++) &#123;</span><br><span class="line">      fns[i].apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 取消订阅</span></span><br><span class="line">  <span class="keyword">const</span> remove = <span class="function"><span class="keyword">function</span>(<span class="params">key, fn</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> fns = clientList[key];</span><br><span class="line">    <span class="keyword">if</span> (!fns) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!fn) &#123; <span class="comment">// 如果没有传函数，则取消key对应的所有订阅</span></span><br><span class="line">      fns &amp;&amp; (fns.length = <span class="number">0</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; fns.length; i++) &#123;</span><br><span class="line">        <span class="keyword">const</span> _fn = fns[i];</span><br><span class="line">        <span class="keyword">if</span> (_fn === fn) &#123;</span><br><span class="line">          fns.splice(i, <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    listen,</span><br><span class="line">    trigger,</span><br><span class="line">    remove</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line">Event.listen(<span class="string">'buy'</span>, (<span class="built_in">arguments</span>) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'buy'</span>, <span class="built_in">arguments</span>);</span><br><span class="line">&#125;)</span><br><span class="line">Event.listen(<span class="string">'buy'</span>, (<span class="built_in">arguments</span>) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'buy1'</span>, <span class="built_in">arguments</span>);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">let</span> a = <span class="function">(<span class="params"><span class="built_in">arguments</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'buy2'</span>, <span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br><span class="line">Event.listen(<span class="string">'buy'</span>, a)</span><br><span class="line">Event.listen(<span class="string">'buy'</span>, (<span class="built_in">arguments</span>) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'buy3'</span>, <span class="built_in">arguments</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Event.trigger(<span class="string">'buy'</span>, <span class="number">111</span>);</span><br><span class="line">Event.remove(<span class="string">'buy'</span>, a);</span><br><span class="line">Event.trigger(<span class="string">'buy'</span>, <span class="number">222</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h4><p>命令模式的作用主要是将<code>动作的请求者</code>和<code>动作的执行者</code>解耦。抽象一个command类，它定义了一个执行操作的接口（execute）,还包含一个接收者（真正的执行命令的对象）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 安装命令</span></span><br><span class="line"><span class="keyword">const</span> setCommand = <span class="function">(<span class="params">button, command</span>) =&gt;</span> &#123;</span><br><span class="line">  button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 抽象command对象，执行命令</span></span><br><span class="line">    command.execute();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// receive，具体的命令执行者</span></span><br><span class="line"><span class="keyword">const</span> MenuBar = &#123;</span><br><span class="line">  refresh() &#123;   </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'刷新菜单目录'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 命令类，封装了命令的行为</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RefreshMenuBarCommand</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(receiver) &#123;</span><br><span class="line">    <span class="keyword">this</span>.receiver = receiver;</span><br><span class="line">  &#125;</span><br><span class="line">  execute() &#123;</span><br><span class="line">    <span class="keyword">this</span>.receiver.refresh();</span><br><span class="line">  &#125;</span><br><span class="line">  unExecute() &#123;</span><br><span class="line">    <span class="comment">// 撤销操作</span></span><br><span class="line">    <span class="keyword">this</span>.receiver.unRefresh();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> refreshMenuBarCommand = <span class="keyword">new</span> RefreshMenuBarCommand(MenuBar);</span><br><span class="line"></span><br><span class="line">setCommand(<span class="built_in">document</span>.getElementById(<span class="string">'button'</span>), refreshMenuBarCommand);</span><br></pre></td></tr></table></figure>
+
+<h4 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h4><p>组合模式又叫部分整体模式，依据树形结构来组合对象，用来表示部分以及整体层次，利用对象多态性统一对待组合和单个对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 叶对象</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Folder</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.files = [];</span><br><span class="line">  &#125;</span><br><span class="line">  add(file) &#123;</span><br><span class="line">    <span class="keyword">this</span>.files.push(file);</span><br><span class="line">  &#125;</span><br><span class="line">  scan() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`开始扫描文件夹：<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.files.length; i++) &#123;</span><br><span class="line">      <span class="keyword">this</span>.files[i].scan();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 叶节点</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">File</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(name) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  add(name) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'文件下面不能再添加文件'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  scan() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`开始扫描文件:<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>)  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> folder = <span class="keyword">new</span> Folder(<span class="string">'学习资料'</span>);</span><br><span class="line"><span class="keyword">const</span> folder1 = <span class="keyword">new</span> Folder(<span class="string">'Javascript'</span>);</span><br><span class="line"><span class="keyword">const</span> folder2 = <span class="keyword">new</span> Folder(<span class="string">'jQuery'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> file1 = <span class="keyword">new</span> File(<span class="string">'Javascript 设计模式与开发实践'</span>);</span><br><span class="line"><span class="keyword">const</span> file2 = <span class="keyword">new</span> File(<span class="string">'精通jQuery'</span>);</span><br><span class="line"><span class="keyword">const</span> file3 = <span class="keyword">new</span> File(<span class="string">'重构与模式'</span>);</span><br><span class="line"></span><br><span class="line">folder1.add(file1);</span><br><span class="line">folder2.add(file2);</span><br><span class="line">folder.add(folder1);</span><br><span class="line">folder.add(folder2);</span><br><span class="line">folder.add(file3)</span><br><span class="line"></span><br><span class="line">folder.scan();</span><br></pre></td></tr></table></figure>
+
+<h4 id="模版方法模式"><a href="#模版方法模式" class="headerlink" title="模版方法模式"></a>模版方法模式</h4><p>模版方法模式是一种利用继承方式，把一系列执行步骤抽象封装在父类（模板），然后在子类实现不同的算法（按照模板具体实现）。在JavaScript中也可以使用高阶函数实现，不需要使用继承。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Beverage</span> </span>&#123; <span class="comment">// 抽象类</span></span><br><span class="line">  init() &#123;</span><br><span class="line">    <span class="keyword">this</span>.boilWater();</span><br><span class="line">    <span class="keyword">this</span>.brew();</span><br><span class="line">    <span class="keyword">this</span>.pourInCup();</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.customerWantsCondiments()) &#123; <span class="comment">// 如果挂钩返回了true，则需要调料</span></span><br><span class="line">      <span class="keyword">this</span>.addCondiments();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  boilWater() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'把水煮沸'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  brew() &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'子类必须重写brew方法'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  pourInCup() &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'子类必须重写addCondiments方法'</span>); </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  customerWantsCondiments() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">// 默认需要调料  </span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CoffeeWithHook</span> <span class="keyword">extends</span> <span class="title">Beverage</span> </span>&#123; <span class="comment">// 继承饮料抽象类</span></span><br><span class="line">  brew() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'用沸水把冲泡咖啡'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  pourInCup() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'把咖啡倒进杯子'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  addCondiments() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'加糖和牛奶'</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  customerWantsCondiments() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 请求客户是否需要加糖和牛奶</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> coffee = <span class="keyword">new</span> CoffeeWithHook()</span><br><span class="line">coffee.init();</span><br></pre></td></tr></table></figure>
+
+<h4 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h4><p>享元模式是一种用于性能优化的模式，核心是使用<code>共享技术</code>来有效支持大量细粒度的对象。如果系统中因为创建了大量类似的对象而导致内存占用过高，享元模式就非常有用了。</p>
+<h4 id="责职链模式"><a href="#责职链模式" class="headerlink" title="责职链模式"></a>责职链模式</h4><p>责职链模式是使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系，将这些对象连成一条链，并沿着这条链传递该请求，知道有一个对象处理它为止。缺点是如果责职链过长时会影响性能。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Chain</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(fn) &#123;</span><br><span class="line">    <span class="keyword">this</span>.fn = fn;</span><br><span class="line">    <span class="keyword">this</span>.successor = <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 设置下一个节点</span></span><br><span class="line">  setNextSuccessor(successor) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.successor = successor</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 是否把请求丢到下一个节点</span></span><br><span class="line">  passRequest() &#123;</span><br><span class="line">    <span class="keyword">const</span> ret = <span class="keyword">this</span>.fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">    <span class="keyword">if</span> (ret === <span class="string">'nextSuccessor'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.successor &amp;&amp; <span class="keyword">this</span>.successor.passRequest.apply(<span class="keyword">this</span>.successor, <span class="built_in">arguments</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ret</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 异步情况下，如果需要丢给下个节点，则调用该方法</span></span><br><span class="line">  next() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.successor &amp;&amp; <span class="keyword">this</span>.successor.passRequest.apply(<span class="keyword">this</span>.successor, <span class="built_in">arguments</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn1 = <span class="keyword">new</span> Chain(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'nextSuccessor'</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn2 = <span class="keyword">new</span> Chain(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">2</span>);</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.next();</span><br><span class="line">  &#125;, <span class="number">1000</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fn3 = <span class="keyword">new</span> Chain(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">fn1.setNextSuccessor(fn2).setNextSuccessor(fn3);</span><br><span class="line">fn1.passRequest();</span><br><span class="line"><span class="comment">// 输出1、2、3</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h4><p>用一个中介对象来封装一系列的对象交互，中介者使各个对象不需要县式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互。当场景是对象与对象之间存在大量的关联，就可以考虑中介者模式。</p>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4></section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#Javasript" >
+    <span class="tag-code">Javasript</span>
+  </a>
+
+  <a href="/tags#设计模式" >
+    <span class="tag-code">设计模式</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/07/27/git/git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+        <span class="nav-arrow">← </span>
+        
+          git 基本操作
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- No Comment -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#设计模式"><span class="toc-nav-text">设计模式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#单例模式"><span class="toc-nav-text">单例模式</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#策略模式"><span class="toc-nav-text">策略模式</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#代理模式"><span class="toc-nav-text">代理模式</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#发布-订阅模式"><span class="toc-nav-text">发布-订阅模式</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#命令模式"><span class="toc-nav-text">命令模式</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#组合模式"><span class="toc-nav-text">组合模式</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#模版方法模式"><span class="toc-nav-text">模版方法模式</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#享元模式"><span class="toc-nav-text">享元模式</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#责职链模式"><span class="toc-nav-text">责职链模式</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#中介者模式"><span class="toc-nav-text">中介者模式</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#"><span class="toc-nav-text"></span></a></li></ol></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2020/08/13/设计模式/设计模式/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng" target="_blank" rel="noopener">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>
