@@ -154,7 +154,7 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>继承是面向对象编程的一个基本特征，在ES6之前，Javascript并没有提供接口去实现继承，于是很多人就使用Javascript的特效<code>原型链</code>来实现继承，继承方式主要分成6种类型。在ES6之后，可以使用<code>extends</code>关键字直接实现继承。</p>
+    <section class="markdown-content"><p>继承是面向对象编程的一个基本特征，在ES6之前，Javascript并没有提供接口去实现继承，于是很多人就使用Javascript的特性<code>原型链</code>来实现继承，继承方式主要分成6种类型。在ES6之后，可以使用<code>extends</code>关键字直接实现继承。</p>
 <h3 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h3><p>原型链继承的思路主要是利用原型链的思路，使子类的原型对象<code>prototype</code>指向父类实例的原型指针对象<code>__proto__</code>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.property = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SuperType.prototype.getSuperValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.property;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="comment">// this.property = false;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现继承</span></span><br><span class="line">SubType.prototype = <span class="keyword">new</span> SuperType()</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> instance = <span class="keyword">new</span> SubType()</span><br><span class="line"><span class="built_in">console</span>.log(instance.getSuperValue()); <span class="comment">// 输出true</span></span><br></pre></td></tr></table></figure>
 <h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
@@ -344,7 +344,7 @@
 </div>
     <footer class="app-footer">
   <p class="copyright">
-    &copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    &copy; 2021 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
     <br>
     Theme by <a href="https://github.com/yanm1ng" target="_blank" rel="noopener">yanm1ng</a>
   </p>

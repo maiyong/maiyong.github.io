@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Composition Api 和 Teleport | maiy&#39;s blog
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+  
+    
+<script src="/js/qrious.js"></script>
+
+  
+  
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
+  
+
+
+  
+<meta name="generator" content="Hexo 4.2.1"></head>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
+</div>
+
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>maiy's blog</span>
+    </a>
+    <ul class="right-list">
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+    <div id="article-banner">
+  <h2>Composition Api 和 Teleport</h2>
+  <p class="post-date">2021-01-13</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h3 id="Composition-Api"><a href="#Composition-Api" class="headerlink" title="Composition Api"></a>Composition Api</h3><p><code>Composition Api</code>是为了解决vue组件里逻辑代码过多而出现的，主要是利用<code>setup</code>函数把组件的逻辑功能点封装起来，即逻辑复用。</p>
+<h4 id="setup"><a href="#setup" class="headerlink" title="setup"></a>setup</h4><p><code>setup</code>函数在<code>组件创建之前</code>执行，由于<code>setup</code>在创建实例前执行，因此没有<code>this</code>，也不能访问组件声明的属性。参数是<code>props</code>和<code>context</code>。如果需要在<code>setup</code>里创建响应式的变量，那就需要<code>ref</code>函数把变量封装起来，在<code>setup</code>函数里使用<code>obj.value</code>的形式来访问变量。我们也可以在<code>setup</code>函数里用<code>watch</code>函数对响应式变量进行监听。使用<code>toRefs</code>函数对<code>props</code>的属性进行响应式引用。<code>computed</code>函数也可以在<code>setup</code>函数里创建只读的响应式引用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; fetchUserRepositories &#125; <span class="keyword">from</span> <span class="string">'@/api/repositories'</span></span><br><span class="line"><span class="keyword">import</span> &#123; ref, onMounted, watch, toRefs, computed &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line">setup(props) &#123;</span><br><span class="line">  <span class="comment">// 使用toRefs创建对props的user属性的响应式引用</span></span><br><span class="line">  <span class="keyword">const</span> &#123; user &#125; = toRefs(props)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> repositories = ref([]) <span class="comment">// 创建了响应式的变量</span></span><br><span class="line">  <span class="keyword">const</span> getUserRepositories = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="comment">// 使用respositories.value 来访问响应式变量</span></span><br><span class="line">    repositories.value = <span class="keyword">await</span> fetchUserRepositories(props.user);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  onMounted(getUserRepositories) <span class="comment">// 在mounted生命周期执行时调用getUserRepositories</span></span><br><span class="line"></span><br><span class="line">  watch(user, getUserRepositories) <span class="comment">// 每当user更新时都会调用getUserRepositories</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> searchQuery = ref(<span class="string">''</span>)</span><br><span class="line">  <span class="comment">// 创建了只读的响应式引用，每当searchQuery或者repositories更新都会重新执行该计算函数</span></span><br><span class="line">  <span class="keyword">const</span> repositoriesMatchingSearchQuery = computed(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> repositories.value.filter(<span class="function"><span class="params">item</span> =&gt;</span> item.name.inclueds(searchQuery.value))</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    repositories,</span><br><span class="line">    searchQuery,</span><br><span class="line">    getUserRepositories,</span><br><span class="line">    repositoriesMatchingSearchQuery</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="组合式函数"><a href="#组合式函数" class="headerlink" title="组合式函数"></a>组合式函数</h4><p>这样一看像是把所有逻辑都抽出来封装在<code>setup</code>函数，而且会使得<code>setup</code>函数变得很臃肿，所以vue3.0会把上面的例子<code>setup</code>函数里的逻辑提取到一个独立的<code>组合式函数</code>。<br>把逻辑1函数抽象出来</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 函数1</span></span><br><span class="line"><span class="keyword">import</span> &#123; fetchUserRepositories &#125; <span class="keyword">from</span> <span class="string">'@/api/repositories'</span></span><br><span class="line"><span class="keyword">import</span> &#123; ref, onMounted, watch &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="comment">// 钩子函数</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">useUserRepositories</span>(<span class="params">user</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> repositories = ref([]) <span class="comment">// 创建了响应式的变量</span></span><br><span class="line">  <span class="keyword">const</span> getUserRepositories = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">    <span class="comment">// 使用respositories.value 来访问响应式变量</span></span><br><span class="line">    repositories.value = <span class="keyword">await</span> fetchUserRepositories(props.user);</span><br><span class="line">  &#125;</span><br><span class="line">  onMounted(getUserRepositories) <span class="comment">// 在mounted生命周期执行时调用getUserRepositories</span></span><br><span class="line">  watch(user, getUserRepositories) <span class="comment">// 每当user更新时都会调用getUserRepositories</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    repositories,</span><br><span class="line">    getUserRepositories</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>把逻辑2函数抽象出来</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 函数2</span></span><br><span class="line"><span class="keyword">import</span> &#123; ref, computed &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">useRepositoryNameSearch</span>(<span class="params">respositories</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> searchQuery = ref(<span class="string">''</span>)</span><br><span class="line">  <span class="comment">// 创建了只读的响应式引用，每当searchQuery或者repositories更新都会重新执行该计算函数</span></span><br><span class="line">  <span class="keyword">const</span> repositoriesMatchingSearchQuery = computed(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> repositories.value.filter(<span class="function"><span class="params">item</span> =&gt;</span> item.name.inclueds(searchQuery.value))</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    searchQuery,</span><br><span class="line">    repositoriesMatchingSearchQuery</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后在组件中引用，这样子就能把代码逻辑抽象出来，创建个好维护的代码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> useUserRepositories <span class="keyword">from</span> <span class="string">'@/composables/useUserRepositories'</span></span><br><span class="line"><span class="keyword">import</span> useRepositoryNameSearch <span class="keyword">from</span> <span class="string">'@/composables/useRepositoryNameSearch'</span></span><br><span class="line"><span class="keyword">import</span> &#123; toRefs &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    user: &#123; <span class="attr">type</span>: <span class="built_in">String</span> &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  setup(props) &#123;</span><br><span class="line">    <span class="comment">// 使用toRefs创建对props的user属性的响应式引用</span></span><br><span class="line">    <span class="keyword">const</span> &#123; user &#125; = toRefs(props)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 与React hook类似</span></span><br><span class="line">    <span class="keyword">const</span> &#123; repositories, getUserRepositories &#125; = useUserRepositories(user)</span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">      searchQuery,</span><br><span class="line">      repositoriesMatchingSearchQuery</span><br><span class="line">    &#125; = useRepositoryNameSearch(repositories)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="comment">// 因为我们并不关心未经过滤的仓库</span></span><br><span class="line">      <span class="comment">// 我们可以在 `repositories` 名称下暴露过滤后的结果</span></span><br><span class="line">      repositories: repositoriesMatchingSearchQuery,</span><br><span class="line">      getUserRepositories,</span><br><span class="line">      searchQuery,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Teleport"><a href="#Teleport" class="headerlink" title="Teleport"></a>Teleport</h3><p><code>Teleport</code>是为了解决在组件里也能把内容渲染在父节点以外的问题，常见的使用场景是组件控制弹框，通知信息等全局动画。如下代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"hello"</span>&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123; msg &#125;&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">    &lt;teleport to="#purple-box"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;p&gt;&#123;&#123; content &#125;&#125;&lt;/</span>p&gt;</span><br><span class="line">    &lt;<span class="regexp">/teleport&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    data() &#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        msg: <span class="string">'HelloWorld'</span>,</span><br><span class="line">        content: <span class="string">'hello teleport'</span>, <span class="comment">// teleport 显示在purple-box下，</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="片段"><a href="#片段" class="headerlink" title="片段"></a>片段</h3><p>以往<code>template</code>只能包含一个元素，现在支持多个</p>
+</section>
+    <!-- Tags START -->
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#前端" >
+    <span class="tag-code">前端</span>
+  </a>
+
+  <a href="/tags#vue3.0" >
+    <span class="tag-code">vue3.0</span>
+  </a>
+
+      </div>
+    
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2020/12/30/html/html%20%E7%9F%A5%E8%AF%86/">
+        <span class="nav-arrow">← </span>
+        
+          html、CSS 知识
+        
+      </a>
+    
+    
+  </div>
+
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- No Comment -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Composition-Api"><span class="toc-nav-text">Composition Api</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#setup"><span class="toc-nav-text">setup</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#组合式函数"><span class="toc-nav-text">组合式函数</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Teleport"><span class="toc-nav-text">Teleport</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#片段"><span class="toc-nav-text">片段</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
+
+<script>
+  (function () {
+    var url = 'http://yoursite.com/2021/01/13/vue/Composition Api 和 Teleport/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+  })();
+</script>
+
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2021 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng" target="_blank" rel="noopener">yanm1ng</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+
+<script src="/js/script.js"></script>
+
+  </body>
+</html>

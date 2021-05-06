@@ -10,7 +10,7 @@
   
   <title>
     
-      vuex | maiy&#39;s blog
+      html、CSS 知识 | maiy&#39;s blog
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -145,8 +145,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>vuex</h2>
-  <p class="post-date">2020-05-28</p>
+  <h2>html、CSS 知识</h2>
+  <p class="post-date">2020-12-30</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -154,30 +154,50 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h3 id="vuex"><a href="#vuex" class="headerlink" title="vuex"></a>vuex</h3><p>Vuex是专门为Vue.js设计的状态管理模式。Vuex是全局的属性。</p>
-<ul>
-<li>Vuex的状态存储是响应式的</li>
-<li>不可以直接修改，需要<code>commit</code>到<code>mutation</code></li>
+    <section class="markdown-content"><h3 id="一、元素标签分类"><a href="#一、元素标签分类" class="headerlink" title="一、元素标签分类"></a>一、元素标签分类</h3><p>在html5中，元素标签主要分成三大块，分别是块级（block）标签、行内（inline）标签和行内块（inline-block）标签。</p>
+<h4 id="块级（block）标签"><a href="#块级（block）标签" class="headerlink" title="块级（block）标签"></a>块级（block）标签</h4><ol>
+<li>块级（block）标签主要包含<code>div、p、h1、h2...</code>等标签</li>
+<li>布局格式为独占一行</li>
+<li>在盒子模型上，设置所有的属性都会有效</li>
+</ol>
+<h4 id="行内（inline）标签"><a href="#行内（inline）标签" class="headerlink" title="行内（inline）标签"></a>行内（inline）标签</h4><ol>
+<li>内联（inline）标签主要包含有<code>span、a、strong</code>等标签</li>
+<li>布局格式是能够与其他元素在同一行上</li>
+<li>盒子模型上，不可以设置<code>width</code>和<code>height</code>，是靠内容撑开，并且<code>padding-top，padding-bottom，margin-top，margin-bottom</code>不会对其他元素造成影响。</li>
+</ol>
+<h4 id="行内块（inline-block）标签"><a href="#行内块（inline-block）标签" class="headerlink" title="行内块（inline-block）标签"></a>行内块（inline-block）标签</h4><ol>
+<li>主要包含<code>img、input、textarea</code>标签</li>
+<li>行内块标签可以与其他元素独占一行</li>
+<li>盒子模型也支持设置所有属性，集成行内和块级标签的优点。</li>
+</ol>
+<h3 id="二、link标签和-import的区别"><a href="#二、link标签和-import的区别" class="headerlink" title="二、link标签和@import的区别"></a>二、link标签和@import的区别</h3><ol>
+<li>从属性关系区别。@import是CSS提供的语法规则，只有导入样式的左右。而link是html的标签，不仅可以加载CSS文件，还可以定义RSS、rel连接属性、引入网站图标等。</li>
+<li>加载顺序区别。加载页面时，link标签引入的CSS被同时加载；@import引入的CSS将在页面加载完毕后被加载。</li>
+<li>兼容性区别。@import是CSS2.1后才有的语法，link标签是HTML元素，不存在兼容性问题。</li>
+<li>DOM可控性区别。link可以通过DOM操作来改变样式，@import则无法通过DOM操作。</li>
+</ol>
+<h3 id="重绘和回流"><a href="#重绘和回流" class="headerlink" title="重绘和回流"></a>重绘和回流</h3><p>重绘：当渲染树中的一些元素需要更新属性，这些属性只会影响元素的外观、风格，而不会影响布局，如<code>background-color</code>；回流：当渲染树中的一部分（或全部）因为元素的规模尺寸、布局、隐藏等改变而需要重新构建的操作，会影响到布局。重绘不一定会引发回流，但是回流必定会发生重绘。</p>
+<h4 id="常见的回流"><a href="#常见的回流" class="headerlink" title="常见的回流"></a>常见的回流</h4><ul>
+<li>添加/删除DOM</li>
+<li>元素尺寸改变</li>
+<li>内容变化，如在input输入文字</li>
+<li>浏览器窗口尺寸改变，resize事件发生时</li>
+<li>计算offsetWidth和offsetHeight时</li>
+<li>设置style属性的值</li>
+<li>修改默认字体。</li>
 </ul>
-<h4 id="State"><a href="#State" class="headerlink" title="State"></a>State</h4><p><code>state</code>就是单一状态树，即用一个<code>state</code>对象保存整个应用的状态。</p>
-<h4 id="Getter"><a href="#Getter" class="headerlink" title="Getter"></a>Getter</h4><p><code>getter</code>就像计算属性一样，会把结果缓存起来，当函数里的state变更时会重新执行。但也可以使用方法，但是使用方法就不会缓存。</p>
-<h4 id="Mutation"><a href="#Mutation" class="headerlink" title="Mutation"></a>Mutation</h4><p><code>mutation</code>类似于<code>redux</code>里的<code>reducer</code>，存函数，不能做异步操作，主要作用是更新state。</p>
-<h4 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h4><p><code>action</code>主要是为<code>mutation</code>服务，提交<code>mutation</code>到Mutation，而且<code>action</code>可以进行异步操作，解决<code>mutation</code>不能执行异步操作的问题</p>
-<h4 id="Module"><a href="#Module" class="headerlink" title="Module"></a>Module</h4><p>由于使用单一状态树，会导致store变得非常臃肿，<code>module</code>就是解决这个问题的，把<code>store</code>分割成模块，每个模块有各自的<code>state</code>、<code>mutation</code>、<code>action</code>和<code>getter</code></p>
-<p><img src="https://vuex.vuejs.org/vuex.png" alt="&#39;vuex&#39;"></p>
-<h4 id="plugins"><a href="#plugins" class="headerlink" title="plugins"></a>plugins</h4><p>类似<code>redux</code>的中间件，每次<code>mutation</code>后调用</p>
+<h4 id="用visibility与dispaly控制元素的显示与隐藏有什么差别"><a href="#用visibility与dispaly控制元素的显示与隐藏有什么差别" class="headerlink" title="用visibility与dispaly控制元素的显示与隐藏有什么差别"></a>用visibility与dispaly控制元素的显示与隐藏有什么差别</h4><ol>
+<li>visibility隐藏后还会在文档上留着位置，而display: none不会。</li>
+<li>visibility只会重绘，而display会引发回流。</li>
+</ol>
 </section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#前端" >
-    <span class="tag-code">前端</span>
-  </a>
-
-  <a href="/tags#vue" >
-    <span class="tag-code">vue</span>
+  <a href="/tags#html5、CSS" >
+    <span class="tag-code">html5、CSS</span>
   </a>
 
       </div>
@@ -188,17 +208,17 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2020/05/26/vue/vue%20%E7%BB%84%E4%BB%B6/">
+      <a class="nav-left" href="/2020/08/13/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
         <span class="nav-arrow">← </span>
         
-          vue 组件
+          设计模式
         
       </a>
     
     
-      <a class="nav-right" href="/2020/07/16/%E9%9D%A2%E8%AF%95/%E6%98%8E%E6%BA%90%E4%BA%91%E9%9D%A2%E8%AF%95/">
+      <a class="nav-right" href="/2021/01/13/vue/Composition%20Api%20%E5%92%8C%20Teleport/">
         
-          明源云面试
+          Composition Api 和 Teleport
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -245,7 +265,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#vuex"><span class="toc-nav-text">vuex</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#State"><span class="toc-nav-text">State</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Getter"><span class="toc-nav-text">Getter</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Mutation"><span class="toc-nav-text">Mutation</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Action"><span class="toc-nav-text">Action</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#Module"><span class="toc-nav-text">Module</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#plugins"><span class="toc-nav-text">plugins</span></a></li></ol></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一、元素标签分类"><span class="toc-nav-text">一、元素标签分类</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#块级（block）标签"><span class="toc-nav-text">块级（block）标签</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#行内（inline）标签"><span class="toc-nav-text">行内（inline）标签</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#行内块（inline-block）标签"><span class="toc-nav-text">行内块（inline-block）标签</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二、link标签和-import的区别"><span class="toc-nav-text">二、link标签和@import的区别</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#重绘和回流"><span class="toc-nav-text">重绘和回流</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#常见的回流"><span class="toc-nav-text">常见的回流</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#用visibility与dispaly控制元素的显示与隐藏有什么差别"><span class="toc-nav-text">用visibility与dispaly控制元素的显示与隐藏有什么差别</span></a></li></ol></li></ol>
     
   </div>
 </aside>
@@ -255,7 +275,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2020/05/28/vue/vuex/';
+    var url = 'http://yoursite.com/2020/12/30/html/html 知识/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
